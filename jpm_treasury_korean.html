@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPM 미국 국채 시장 일일 보고서 — 2026.03.05</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f4f6fa;
+    color: #1e2535;
+    line-height: 1.75;
+    padding: 32px 16px;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; }
+
+  /* HEADER */
+  .header {
+    background: #0d2a4a;
+    border-radius: 12px;
+    padding: 28px 32px 24px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute; right: -30px; top: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-meta {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .badge {
+    background: #c8973a; color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .header-meta span {
+    font-size: 12px; color: #8aadcc;
+  }
+  .header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px; color: #fff;
+    line-height: 1.4; margin-bottom: 6px;
+  }
+  .header-sub { font-size: 14px; color: #e87e6a; font-weight: 700; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 20px;
+  }
+  .tag-red   { background: rgba(220,60,50,0.25);   color: #ff9090; }
+  .tag-yellow{ background: rgba(200,151,58,0.25);  color: #f5c97a; }
+  .tag-blue  { background: rgba(100,160,220,0.2);  color: #90c4f0; }
+
+  /* SECTIONS */
+  .section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    border-left: 4px solid #0d2a4a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px; color: #0d2a4a;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section p { font-size: 14px; color: #2d3a4a; margin-bottom: 10px; }
+  .section ul { padding-left: 18px; margin-bottom: 10px; }
+  .section li { font-size: 14px; color: #2d3a4a; margin-bottom: 6px; }
+  strong { color: #0d2a4a; }
+
+  /* CALLOUT */
+  .callout {
+    border-radius: 7px; padding: 12px 16px;
+    font-size: 13.5px; font-weight: 600;
+    margin-top: 12px;
+  }
+  .callout-red    { background: #fff0ee; border-left: 3px solid #e05a4a; color: #a03020; }
+  .callout-yellow { background: #fffbee; border-left: 3px solid #c8973a; color: #7a5a10; }
+  .callout-green  { background: #eefff4; border-left: 3px solid #2a9a60; color: #1a6040; }
+
+  /* CHART BOX */
+  .chart-box {
+    background: #f7f9fd;
+    border: 1px solid #dde6f0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 18px 0;
+  }
+  .chart-title {
+    font-size: 12px; font-weight: 700; color: #0d2a4a;
+    margin-bottom: 12px; letter-spacing: 0.2px;
+  }
+  .chart-source {
+    font-size: 11px; color: #999; margin-top: 8px; text-align: right;
+  }
+  canvas { max-height: 220px; }
+
+  /* TABLE */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: #0d2a4a; color: #fff; }
+  thead th { padding: 9px 12px; text-align: center; font-weight: 600; white-space: nowrap; }
+  tbody tr:nth-child(even) { background: #f4f7fb; }
+  tbody td { padding: 8px 12px; text-align: center; font-family: 'IBM Plex Mono', monospace; }
+  td.label { font-family: 'Noto Sans KR', sans-serif; font-weight: 700; color: #0d2a4a; }
+  td.up   { color: #c0392b; font-weight: 700; }
+  td.down { color: #27ae60; font-weight: 700; }
+  td.high { color: #c0392b; }
+
+  /* TRADE SUMMARY */
+  .trade-box {
+    background: #0d2a4a;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 8px; margin-bottom: 28px;
+  }
+  .trade-box h3 {
+    font-family: 'Noto Serif KR', serif;
+    color: #fff; font-size: 16px; margin-bottom: 16px;
+  }
+  .trade-item {
+    background: rgba(255,255,255,0.07);
+    border-radius: 8px; padding: 12px 16px;
+    margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .trade-item .t-title { font-size: 14px; font-weight: 700; color: #e8f0fb; }
+  .trade-item .t-detail { font-size: 12px; color: #8aadcc; margin-top: 3px; }
+
+  /* GRID */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .grid-card { border-radius: 7px; padding: 14px 16px; }
+  .grid-card .g-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .grid-card ul { padding-left: 16px; }
+  .grid-card li { font-size: 13px; margin-bottom: 5px; }
+  .card-red   { background: #fff0ee; }
+  .card-red   .g-title { color: #c0392b; }
+  .card-green { background: #eefff4; }
+  .card-green .g-title { color: #2a9a60; }
+
+  .footer {
+    font-size: 11px; color: #aaa; border-top: 1px solid #dde;
+    padding-top: 14px; text-align: center;
+  }
+
+  @media(max-width: 540px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .section { padding: 18px 16px; }
+    .header  { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-meta">
+      <span class="badge">J.P. Morgan</span>
+      <span>Global Markets Strategy &nbsp;·&nbsp; 2026년 3월 5일</span>
+    </div>
+    <h1>미국 국채 시장 일일 보고서</h1>
+    <div class="header-sub">듀레이션 언더웨이트 포지션에서 이익 실현 권고</div>
+    <div class="tags">
+      <span class="tag tag-red">2년물 숏 청산 ✓</span>
+      <span class="tag tag-red">10년 TIPS 숏 청산 ✓</span>
+      <span class="tag tag-yellow">5년물 매도 대기</span>
+      <span class="tag tag-blue">P-STRIPS 업데이트</span>
+    </div>
+  </div>
+
+  <!-- 주요 수익률 테이블 -->
+  <div class="section">
+    <h2>📊 주요 국채 수익률 현황</h2>
+    <p>2026년 3월 5일 종가 기준 주요 만기별 수익률 및 YTD 변화입니다.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>만기</th><th>수익률(%)</th><th>1일 변화(bp)</th><th>YTD 변화</th><th>3개월 백분위</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="label">2년물</td><td>3.60</td><td class="up">+5.7</td><td class="up">+13.0bp</td><td class="high">94%</td></tr>
+          <tr><td class="label">5년물</td><td>3.74</td><td class="up">+7.3</td><td class="up">+3.2bp</td><td>67%</td></tr>
+          <tr><td class="label">10년물</td><td>4.15</td><td class="up">+6.4</td><td class="down">-0.7bp</td><td>55%</td></tr>
+          <tr><td class="label">30년물</td><td>4.75</td><td class="up">+3.6</td><td class="down">-7.8bp</td><td>42%</td></tr>
+          <tr><td class="label">2s/10s 커브</td><td colspan="2">54.7bp</td><td class="down">-13.7bp</td><td class="high">4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 시장 개요 -->
+  <div class="section">
+    <h2>🌐 시장 개요</h2>
+    <p>국채 수익률은 <strong>4거래일 연속 상승</strong>하며 벨리(5년 구간)가 커브 내 상대적으로 부진한 성과를 보였습니다. 단, 미국 국채는 브렌트유 3% 상승, TTF 천연가스 2% 이상 급등에도 불구하고 <strong>유럽 국채 대비 아웃퍼폼</strong>을 지속했습니다.</p>
+    <p>주요 경제지표는 지정학적 이슈에 다소 가려진 상황입니다. 신규 실업급여 청구건수는 <strong>21.3만 건</strong>(예상 21.5만)으로 안정적이었으나, 계속 실업급여 청구건수는 4.6만 건 증가한 <strong>186.8만 건</strong>(예상 184.5만)으로 소폭 상회했습니다. 1월 수입물가는 전월 대비 0.2% 상승(예상 0.3%), 비연료 수입물가는 0.5% 올랐습니다. JPM은 <strong>1월 핵심 PCE를 0.42% 상승</strong>으로 추정합니다.</p>
+  </div>
+
+  <!-- 2년물 -->
+  <div class="section">
+    <h2>🎯 2년물 국채: 전술적 숏 청산 권고</h2>
+    <p><strong>2년물 수익률(3.60%)</strong>은 1월 말 이후 최고 수준으로 상승하며 지난 여름 이후 유지해온 레인지의 상단에 도달했습니다. JPM은 추가 상승 여력이 제한적이라고 판단합니다.</p>
+    <ul>
+      <li>향후 1년간 시장에 반영된 약 <strong>50bp의 금리 인하 기대</strong> 중 일부는, 케빈 워시(Kevin Warsh)가 5월 연준 의장직 취임 이후 완화적 정책을 펼 것이라는 기대감을 반영. JPM은 동의하지 않으나, 워시 인준 전까지 해당 프리미엄이 유지될 가능성이 높다고 봄</li>
+      <li>JPM은 <strong>2월 비농업 고용(NFP) 3만 명 증가</strong> 전망(시장 컨센서스 5.5만), <strong>실업률 4.4%</strong>(+0.1%p)로 예상. 예상대로라면 시장의 금리 인하 기대가 강화될 수 있음</li>
+    </ul>
+    <div class="callout callout-red">→ 권고: T 3.5% Jan-28s 기준 2년물 숏 100% 청산 ($2.65억 명목) / 수익: +13.9bp</div>
+
+    <div class="chart-box">
+      <div class="chart-title">[그림1] 2년물 수익률 추이 — 레인지 상단 재도달 (2025.06 ~ 2026.03)</div>
+      <canvas id="chart2y"></canvas>
+      <div class="chart-source">출처: J.P. Morgan</div>
+    </div>
+  </div>
+
+  <!-- 5년물 -->
+  <div class="section">
+    <h2>📉 5년물 국채: 랠리 시 매도 전략</h2>
+    <p>최근 고용 데이터는 <strong>연준이 동결 기조를 유지할 것</strong>이라는 확신을 주고 있으며, JPM은 고용보고서 이후 랠리 발생 시 듀레이션 언더웨이트를 재설정할 것을 권고합니다.</p>
+    <p>OIS 커브 기울기를 반영한 2s/5s/10s 버터플라이 회귀 분석(R²=90.7%) 결과, <strong>5년물 섹터는 현재 약 2bp 고평가</strong>된 것으로 분석됩니다. 시장이 1~2년 내 더 많은 금리 인하를 반영할수록 5년물이 아웃퍼폼하는 경향이 있어, 비둘기파 재료 유입 시 매도 포지션 구축이 유효합니다.</p>
+    <div class="callout callout-yellow">→ 전략: 시장이 더 비둘기파적 연준 경로를 반영할 경우 5년물 섹터 매도 포지션 구축 검토</div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="section">
+    <h2>🛢️ 10년 TIPS: 숏 청산 및 중립 전환</h2>
+    <p>JPM은 약 2주 전 <strong>AI 혼란 우려 과도·생산성 향상 기대에 따른 중립금리(r*) 상승</strong>을 근거로 10년 TIPS 숏 포지션을 구축했습니다. 그러나 이란 분쟁이 예상보다 크게 고조되며 <strong>유가가 2주간 약 20% 급등</strong>했습니다.</p>
+    <p>유가 급등에도 실질금리는 연준 완화 기대 후퇴와 함께 상승했습니다. 향후 전망:</p>
+    <ul>
+      <li>호르무즈 해협 미국 보호·보험 지원 시 유가 소폭 하락 가능하나, 상당한 지정학적 리스크 프리미엄은 지속될 전망</li>
+      <li>DFC(미국 국제개발금융공사)의 보험 한도 문제 및 GCC 국가 저장 용량 부족으로 생산 차질 이미 시작</li>
+      <li><strong>브렌트유 $100/배럴 돌파 꼬리 리스크 상승</strong> → 미국 경제 성장에 부정적 파급 효과 우려</li>
+    </ul>
+    <div class="callout callout-red">→ 권고: 10년 TIPS 숏 청산 (T 1.875% Jan-36s, $5,500만 명목) / 수익: +2.1bp. TIPS 중립 전환</div>
+
+    <div class="chart-box">
+      <div class="chart-title">[참고] TIPS 손익분기 인플레이션율(Breakeven) 현황</div>
+      <canvas id="chartBEI"></canvas>
+      <div class="chart-source">출처: J.P. Morgan</div>
+    </div>
+  </div>
+
+  <!-- STRIPS -->
+  <div class="section">
+    <h2>📋 P-STRIPS 현황 업데이트</h2>
+    <p>미국 재무부 2월 MSPD에 따르면, <strong>P-STRIPS 잔액은 2월 중 14억 달러 증가</strong>했습니다. 이는 <strong>2025년 6월 이후 가장 낮은 증가폭</strong>으로 최근 3개월 평균을 크게 하회합니다.</p>
+    <p>수요가 커브 전반에 고르게 분산된 점이 특징입니다. 최근 수개월간 커브 끝단에 집중되던 수요와 달리, <strong>26~28년 만기 섹터가 $17억으로 가장 활발</strong>했습니다.</p>
+    <p><strong>가장 많이 스트리핑된 종목:</strong> May-52s ($16억), May-55s ($15억), Aug-55s ($15억), Nov-52s ($12억)</p>
+
+    <div class="chart-box">
+      <div class="chart-title">[그림3] P-STRIPS 월별 증감 추이 — 2월 $1.4bn, 2025년 6월 이후 최저</div>
+      <canvas id="chartStrips"></canvas>
+      <div class="chart-source">출처: US Treasury, J.P. Morgan</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">[그림4] 섹터별 P-STRIPS 증감: 2026년 2월 vs 직전 3개월 평균</div>
+      <canvas id="chartDist"></canvas>
+      <div class="chart-source">출처: US Treasury, J.P. Morgan</div>
+    </div>
+  </div>
+
+  <!-- Coup/P -->
+  <div class="section">
+    <h2>📐 Coup/P 스프레드 밸류에이션</h2>
+    <p>JPM은 연초에 스트리핑 활동 둔화 및 변동성 하락을 근거로 Coup/P 스프레드의 축소를 전망했으며, 실제로 <strong>YTD 기준 4년여 만에 최저 수준</strong>으로 급격히 축소되었습니다. 장기 구간(2049~2051년 만기)에서 스프레드는 <strong>1년 평균 대비 2 표준편차 이상</strong> 낮은 수준이며, 모델 기준 현재 <strong>약 1.5bp 과도하게 축소</strong>된 것으로 평가됩니다.</p>
+
+    <div class="grid2">
+      <div class="grid-card card-red">
+        <div class="g-title">⚠️ 단기 — 확대 가능성</div>
+        <ul>
+          <li>현재 밸류에이션 과도 축소</li>
+          <li>지정학적 긴장 고조</li>
+        </ul>
+      </div>
+      <div class="grid-card card-green">
+        <div class="g-title">✅ 중기 — 축소 지속 전망</div>
+        <ul>
+          <li>스트리핑 활동 둔화</li>
+          <li>연준 동결로 실현 변동성 억제</li>
+          <li>연준 B/S 확대 및 국채 바이백</li>
+          <li>금융 규제 완화 기대</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trade Summary -->
+  <div class="trade-box">
+    <h3>📋 최종 트레이드 권고 요약</h3>
+    <div class="trade-item">
+      <div class="dot" style="background:#e87e6a"></div>
+      <div>
+        <div class="t-title">2년물 듀레이션 숏 청산</div>
+        <div class="t-detail">T 3.5% Jan-28s · $2.65억 명목 · P&L: +13.9bp · (US Treasury Market Daily, 2/12/26)</div>
+      </div>
+    </div>
+    <div class="trade-item">
+      <div class="dot" style="background:#f0a050"></div>
+      <div>
+        <div class="t-title">10년 TIPS 숏 청산 → 중립 전환</div>
+        <div class="t-detail">T 1.875% Jan-36s · $5,500만 명목 · P&L: +2.1bp · (TIPS Strategy, 2/20/26)</div>
+      </div>
+    </div>
+    <div class="trade-item">
+      <div class="dot" style="background:#f5c97a"></div>
+      <div>
+        <div class="t-title">5년물 섹터 매도 — 대기 중</div>
+        <div class="t-detail">랠리 발생 및 시장이 비둘기파적 연준 경로를 추가 반영할 때 포지션 구축</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    본 요약은 J.P. Morgan <em>US Treasury Market Daily</em> (2026.03.05) 기반으로 작성되었습니다.
+    투자 결정 시 원문 및 중요 공시 내용을 반드시 확인하십시오.
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+/* ── 공통 차트 설정 ── */
+Chart.defaults.font.family = "'Noto Sans KR', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#555';
+
+/* ── 1. 2년물 수익률 ── */
+new Chart(document.getElementById('chart2y'), {
+  type: 'line',
+  data: {
+    labels: ['Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26'],
+    datasets: [{
+      label: '2년물 수익률(%)',
+      data: [3.85, 3.78, 3.62, 3.55, 3.48, 3.52, 3.44, 3.38, 3.46, 3.60],
+      borderColor: '#0d2a4a',
+      backgroundColor: 'rgba(13,42,74,0.07)',
+      borderWidth: 2.5,
+      pointRadius: 3,
+      tension: 0.35,
+      fill: true,
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      annotation: { annotations: {} },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw}%` } }
+    },
+    scales: {
+      y: {
+        min: 3.2, max: 4.1,
+        ticks: { callback: v => v.toFixed(2) + '%', stepSize: 0.2 },
+        grid: { color: '#eef1f7' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+/* ── 2. TIPS BEI ── */
+new Chart(document.getElementById('chartBEI'), {
+  type: 'bar',
+  data: {
+    labels: ['5년 BEI','10년 BEI','30년 BEI'],
+    datasets: [{
+      label: '손익분기 인플레이션(bp)',
+      data: [256.6, 232.5, 222.6],
+      backgroundColor: ['#0d2a4a','#2e6da4','#5b9bd5'],
+      borderRadius: 5,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      y: {
+        min: 200, max: 270,
+        ticks: { callback: v => v + 'bp' },
+        grid: { color: '#eef1f7' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+/* ── 3. P-STRIPS 월별 ── */
+const stripsData = [5.6,5.2,0.8,4.3,6.4,14.7,5.3,4.8,2.7,4.1,6.3,6.8,11.4,5.6,6.9,6.3,3.9,5.5,4.6,4.2,1.4];
+const stripsLabels = ['Feb 24','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan 25','Feb 25','Mar','Apr','May','Jun','Jul','Aug','Sep','Feb 26'];
+new Chart(document.getElementById('chartStrips'), {
+  type: 'bar',
+  data: {
+    labels: stripsLabels,
+    datasets: [{
+      label: '월별 증감($bn)',
+      data: stripsData,
+      backgroundColor: stripsData.map((_, i) => i === stripsData.length - 1 ? '#c0392b' : '#2e6da4'),
+      borderRadius: 3,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` $${ctx.raw}bn` } }
+    },
+    scales: {
+      y: {
+        ticks: { callback: v => '$' + v + 'bn' },
+        grid: { color: '#eef1f7' }
+      },
+      x: {
+        ticks: { maxRotation: 45, minRotation: 30 },
+        grid: { display: false }
+      }
+    }
+  }
+});
+
+/* ── 4. 섹터별 분포 ── */
+new Chart(document.getElementById('chartDist'), {
+  type: 'bar',
+  data: {
+    labels: ['0-10년','10-20년','20-22년','22-24년','24-26년','26-28년','28-30년'],
+    datasets: [
+      {
+        label: '2026년 2월',
+        data: [0.9, 0.8, -1.7, 1.4, -0.1, 1.7, 1.4],
+        backgroundColor: '#0d2a4a',
+        borderRadius: 3,
+        borderSkipped: false,
+      },
+      {
+        label: '직전 3개월 평균',
+        data: [-0.3, -0.3, -0.9, -0.9, 1.4, 5.5, -0.7],
+        backgroundColor: '#90b8d8',
+        borderRadius: 3,
+        borderSkipped: false,
+      }
+    ]
+  },
+  options: {
+    plugins: {
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.raw}bn` } },
+      legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } }
+    },
+    scales: {
+      y: {
+        ticks: { callback: v => '$' + v + 'bn' },
+        grid: { color: '#eef1f7' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
