@@ -216,22 +216,6 @@
       </div>
     </section>
 
-    <section class="card" style="margin-top:18px;">
-      <h2>노션 임베드에서 좌우 흔들림을 줄이는 방법</h2>
-      <p class="notion-note">노션에서 HTML을 iframe으로 임베드할 때 좌우로 흔들리는 문제는 대부분 <strong>100vw 사용</strong>, <strong>가로로 긴 요소</strong>, <strong>차트 라이브러리의 리사이즈 재계산</strong> 때문에 생깁니다. 이 파일은 그 문제를 줄이도록 설계했습니다.</p>
-      <ul>
-        <li><strong>본문 래퍼를 고정:</strong> <code>width:min(960px, calc(100vw - 24px))</code>처럼 최대 폭을 주고, <code>100vw</code>를 직접 쓰지 않습니다.</li>
-        <li><strong>가로 넘침 차단:</strong> <code>html, body { overflow-x:hidden; }</code>와 카드 내부 <code>overflow:hidden</code>을 함께 둡니다.</li>
-        <li><strong>차트는 PNG로 고정:</strong> 임베드 환경에서 JS 차트가 계속 다시 그려지면 폭이 흔들릴 수 있어, 배포용 버전은 정적 이미지가 오히려 안정적입니다.</li>
-        <li><strong>표는 예외 처리:</strong> 표는 필요할 때만 내부 스크롤을 허용하고, 페이지 전체가 좌우로 밀리지 않도록 별도 래퍼를 둡니다.</li>
-        <li><strong>폰트/애니메이션 최소화:</strong> 외부 폰트 로딩이나 진입 애니메이션은 임베드에서 레이아웃 점프를 만들 수 있으니 배포용은 가볍게 유지하는 편이 좋습니다.</li>
-      </ul>
-      <div class="callout">
-        <strong>권장 배포 방식</strong><br/>
-        GitHub Pages에 올릴 때는 이 HTML과 assets 폴더를 같은 경로에 두고, 노션에는 Pages URL을 임베드하세요. 그리고 가능하면 노션 쪽에서 임베드 폭을 너무 좁게 잡지 않는 것이 좋습니다.
-      </div>
-    </section>
-
     <div class="footer">Source: J.P. Morgan, 11 Mar 2026 report. This HTML summary is a reconstructed Korean briefing for internal research use.</div>
   </main>
 </body>
