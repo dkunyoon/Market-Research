@@ -1,222 +1,205 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>JPM US Treasury Market Daily - 2026-03-11</title>
-  <style>
-    :root {
-      --bg:#f4f7fb; --card:#ffffff; --text:#1c2430; --muted:#5d6b7b; --line:#d8e0ea; --accent:#2f6fb2; --accent2:#5d8fd6;
-      --wrap: 960px;
-    }
-    * { box-sizing:border-box; }
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); overflow-x:hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif; line-height:1.7; }
-    body { -webkit-text-size-adjust:100%; }
-    .page { width:min(var(--wrap), calc(100vw - 24px)); margin:0 auto; padding:24px 0 56px; overflow:hidden; }
-    .hero { background:linear-gradient(135deg, #1d3b63 0%, #2f6fb2 100%); color:#fff; border-radius:22px; padding:28px 24px; box-shadow:0 10px 28px rgba(20,40,80,.12); }
-    .eyebrow { font-size:12px; letter-spacing:.08em; text-transform:uppercase; opacity:.9; }
-    h1 { margin:8px 0 8px; font-size:clamp(28px, 4vw, 42px); line-height:1.15; }
-    .subtitle { font-size:clamp(16px, 2.2vw, 20px); opacity:.95; }
-    .meta { margin-top:14px; font-size:14px; opacity:.88; }
-    .grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; box-shadow:0 6px 20px rgba(16,24,40,.04); overflow:hidden; }
-    h2 { margin:0 0 12px; font-size:24px; line-height:1.25; color:#163b66; }
-    h3 { margin:0 0 10px; font-size:18px; line-height:1.35; color:#234b77; }
-    p { margin:0 0 12px; }
-    .lead { font-size:17px; color:#223447; }
-    .muted { color:var(--muted); }
-    .kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
-    .kpi { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:16px; padding:14px; }
-    .kpi .label { font-size:12px; opacity:.8; }
-    .kpi .value { font-size:28px; font-weight:700; line-height:1.2; margin-top:4px; }
-    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-    .chip { background:#eef4fb; color:#224d79; border:1px solid #d7e3f2; padding:6px 10px; border-radius:999px; font-size:13px; }
-    figure { margin:0; }
-    figcaption { margin-top:10px; font-size:13px; color:var(--muted); }
-    .chart { width:100%; height:auto; display:block; border-radius:14px; border:1px solid var(--line); background:#fff; }
-    .callout { background:#eff6ff; border-left:4px solid var(--accent); border-radius:14px; padding:14px 16px; }
-    .two-col { display:grid; grid-template-columns:1.1fr .9fr; gap:18px; }
-    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:#fff; }
-    table { width:100%; border-collapse:collapse; min-width:720px; }
-    th, td { padding:10px 12px; border-bottom:1px solid #e7edf4; text-align:right; font-size:14px; }
-    th:first-child, td:first-child { text-align:left; }
-    th { background:#f7faff; color:#345579; position:sticky; top:0; }
-    tr:last-child td { border-bottom:none; }
-    ul { margin:8px 0 0 18px; padding:0; }
-    li { margin:0 0 8px; }
-    .footer { margin-top:20px; color:var(--muted); font-size:13px; text-align:center; }
-    .notion-note { font-size:14px; color:#425569; }
-    @media (max-width: 860px) {
-      .grid, .two-col, .kpi-grid { grid-template-columns:1fr; }
-      .page { width:min(var(--wrap), calc(100vw - 16px)); padding-top:12px; }
-      .hero { border-radius:18px; padding:22px 18px; }
-      .card { padding:16px; border-radius:16px; }
-      table { min-width:640px; }
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>US Treasury Market Daily — 2026-03-11</title>
+<style>
+:root{--bg:#12151c; --panel:#1a1f29; --panel2:#202633; --text:#f2f3f5; --muted:#b7bcc7;--line:#2f3848; --blue:#77a7ff; --gold:#d6b05d; --green:#62c28a; --red:#ef6a6a; --gray:#8f98a8;--max: 980px;}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(circle at top,#1b2431 0%,#101319 48%,#0d1117 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",Roboto,Arial,sans-serif;overflow-x:hidden}
+body{-webkit-text-size-adjust:100%}
+.page{width:min(var(--max), calc(100vw - 24px)); margin:0 auto; padding:24px 0 60px; overflow:hidden}
+.hero{background:linear-gradient(135deg,#1d2431 0%,#0f141d 100%); border:1px solid var(--line); border-radius:24px; padding:28px 24px; box-shadow:0 20px 40px rgba(0,0,0,.28)}
+.eyebrow{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#a8b2c3}
+h1{margin:10px 0 10px; font-size:clamp(30px,5vw,48px); line-height:1.08}
+.sub{font-size:clamp(17px,2.2vw,22px); color:#d9dde5; max-width:840px}
+.meta{margin-top:12px; color:var(--muted); font-size:14px}
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px}
+.kpi{background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:14px}
+.kpi .label{font-size:12px; color:#acb6c8}
+.kpi .value{font-size:28px; font-weight:700; margin-top:6px}
+.section{margin-top:18px; background:linear-gradient(180deg,var(--panel),var(--panel2)); border:1px solid var(--line); border-radius:20px; padding:20px}
+h2{margin:0 0 12px; font-size:24px; color:#f7f8fa}
+h3{margin:0 0 10px; font-size:18px; color:#eef2f8}
+.grid2{display:grid; grid-template-columns:1.08fr .92fr; gap:18px}
+.grid2eq{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+p{margin:0 0 12px; line-height:1.8}
+.lead{font-size:17px; color:#eef2f8}
+.callout{padding:14px 16px; border-left:4px solid var(--gold); background:rgba(214,176,93,.08); border-radius:14px; color:#f0ead8}
+.chart-card{background:#131923; border:1px solid var(--line); border-radius:18px; padding:14px}
+.chart-title{font-size:15px; font-weight:700; margin:0 0 6px; color:#f2f5fa}
+.chart-sub{font-size:12px; color:#98a3b8; margin:0 0 10px}
+svg{width:100%; height:auto; display:block}
+.table-wrap{overflow:auto; border:1px solid var(--line); border-radius:16px; background:#141a23}
+table{width:100%; border-collapse:collapse; min-width:760px}
+th,td{padding:10px 12px; border-bottom:1px solid #2b3443; text-align:right; font-size:14px}
+th:first-child, td:first-child{text-align:left}
+th{background:#1b2330; color:#dfe8f7}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:#161c26; color:#aeb9ca; font-size:12px; margin:0 6px 6px 0}
+.footer{margin-top:18px; color:#aab3c1; font-size:13px; text-align:center}
+.note{font-size:13px; color:#99a5b8}
+ul{margin:8px 0 0 20px; padding:0}
+li{margin:0 0 8px; line-height:1.7}
+strong{color:#fff}
+@media (max-width:860px){.page{width:min(var(--max), calc(100vw - 14px)); padding-top:10px}.hero{padding:20px 16px; border-radius:18px}.section{padding:16px; border-radius:16px}.kpis,.grid2,.grid2eq,.grid3{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <div class="eyebrow">J.P. Morgan | US Treasury Market Daily | 2026-03-11</div>
-      <h1>미국 국채시장 데일리 요약</h1>
-      <div class="subtitle">CPI 점검과 국채 공급 업데이트 - 물가 서프라이즈는 크지 않았지만, 금리와 수급은 여전히 약세 압력 우위</div>
-      <div class="meta">원문 핵심을 한글로 재구성했으며, 원문 차트 크롭 없이 별도 시각화를 제작했습니다. GitHub Pages와 Notion 임베드를 염두에 두고 폭 흔들림을 줄이는 구조로 작성했습니다.</div>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="label">2년물</div><div class="value">3.63%</div></div>
-        <div class="kpi"><div class="label">10년물</div><div class="value">4.21%</div></div>
-        <div class="kpi"><div class="label">30년물</div><div class="value">4.86%</div></div>
-        <div class="kpi"><div class="label">시장 vs JPM Fed 경로 괴리</div><div class="value">40bp</div></div>
+<div class="page">
+  <section class="hero">
+    <div class="eyebrow">J.P. Morgan · US Treasury Market Daily · 2026-03-11</div>
+    <h1>미국 국채시장 데일리</h1>
+    <div class="sub">CPI는 겉으로는 무난했지만 속은 생각보다 단단했다. 여기에 장기물 공급 부담, 30년물 입찰 전 콘세션, 투자등급 회사채 대규모 발행, 낮아진 시장 깊이가 겹치며 장기구간이 더 크게 약세를 보였다. 보고서의 핵심은 “방향성 듀레이션”보다 “곡선과 수급”이다.</div>
+    <div class="meta">단일 HTML 파일 · 외부 차트/이미지 의존성 없음 · GitHub Pages/Notion embed용 고정 폭 설계</div>
+    <div class="kpis">
+      <div class="kpi"><div class="label">2년물</div><div class="value">3.63%</div></div>
+      <div class="kpi"><div class="label">10년물</div><div class="value">4.21%</div></div>
+      <div class="kpi"><div class="label">30년물</div><div class="value">4.86%</div></div>
+      <div class="kpi"><div class="label">시장 vs JPM Fed 경로 괴리</div><div class="value">40bp</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>한눈에 보는 핵심 결론</h2>
+    <div class="grid2">
+      <div>
+        <p class="lead">이번 보고서의 핵심은 “물가 숫자 하나로 시장을 설명하기 어렵다”는 데 있습니다. 2월 CPI는 헤드라인 0.27% m/m, 코어 0.22% m/m으로 대체로 시장 기대 범위 안에 들어왔지만, 세부 항목을 뜯어보면 서비스 인플레이션의 끈적임이 완전히 꺾였다고 보기는 어렵습니다. JPM은 이를 바탕으로 코어 PCE를 0.41% m/m 정도로 추정하고 있으며, 이 경우 연간 기준으로도 3%를 웃도는 흐름이 이어집니다.</p>
+        <p>다만 보고서는 금리 상승의 직접 원인을 단순히 “CPI가 셌다”로 보지 않습니다. 장기물 구간은 30년물 입찰을 앞두고 추가 콘세션이 붙었고, 같은 날 투자등급 회사채 발행이 420억달러, 주간 누적으로는 1,000억달러를 넘어서면서 국채 시장이 스프레드 상품 공급과 함께 소화 압력을 받았습니다. 결과적으로 커브는 정책 기대 변화만으로 설명되는 수준보다 더 가팔라졌고, JPM의 공정가치 프레임에서는 장기 구간이 약 10bp 정도 과도하게 steep하다고 평가합니다.</p>
       </div>
-    </section>
-
-    <section class="grid">
-      <article class="card">
-        <h2>핵심 결론</h2>
-        <p class="lead">이번 자료의 메시지는 단순합니다. 2월 CPI는 대체로 예상 범위 안에 들어왔지만, 세부 내역은 완전히 비둘기적이지 않았고, 여기에 공급 부담과 기술적 요인이 겹치면서 미국 국채 금리는 전반적으로 상승했습니다.</p>
-        <ul>
-          <li><strong>정책금리 기대:</strong> 시장은 여전히 연준의 향후 완화 경로를 JPM 전망보다 더 비둘기적으로 보고 있습니다. JPM은 그 괴리가 약 40bp 수준이라고 판단하며, 단기적으로는 이 간극이 쉽게 메워지지 않을 것으로 봅니다.</li>
-          <li><strong>커브 해석:</strong> CPI 직후의 금리 상승은 단순한 물가 해석보다도 공급 소화 부담, 장기물 입찰 전 콘세션, 크레딧 발행 증가 같은 기술적 요인의 영향이 더 컸다는 시각입니다.</li>
-          <li><strong>물가:</strong> 헤드라인과 코어 CPI 모두 서프라이즈가 크지 않았지만, 코어 PCE로 연결되는 세부 항목은 다소 단단했습니다. 다만 임대료 둔화와 중고차 약세가 일부 완충 역할을 했습니다.</li>
-          <li><strong>공급:</strong> JPM은 2026년 민간이 흡수해야 할 순차입 규모를 2.097조달러로 보며, 그 중 6,340억달러가 T-bill에서 나온다고 추정합니다.</li>
-          <li><strong>전술:</strong> 벨리 구간 cheapening, 5s/20s 스티프너 이익실현, 브레이크이븐 중립이라는 조합이 이번 리포트의 실전 포지셔닝 축입니다.</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h2>왜 시장이 흔들렸나</h2>
-        <p>밤사이 원유 반등과 ECB의 다소 매파적인 코멘트가 글로벌 채권시장 약세를 먼저 만들었고, 이후 CPI가 발표되자 미국 금리는 6-8bp가량 추가로 상승했습니다. 보고서는 이 움직임을 <strong>거시 펀더멘털 + 기술적 수급</strong>의 결합으로 해석합니다.</p>
-        <div class="chips">
-          <span class="chip">CPI는 대체로 예상 부합</span>
-          <span class="chip">코어 PCE 추정치는 다소 단단함</span>
-          <span class="chip">장기물 공급 부담</span>
-          <span class="chip">IG 발행 증가</span>
-          <span class="chip">시장 깊이 저하</span>
-        </div>
-        <div class="callout" style="margin-top:14px;">
-          <strong>해석 포인트</strong><br/>
-          금리 상승의 방향 자체보다, <strong>어느 구간이 더 많이 올라갔는지</strong>가 중요합니다. 이번에는 장기물 쪽 steepening이 상대적으로 강했고, JPM은 이를 장기구간의 과도한 가팔라짐으로 평가합니다.
-        </div>
-      </article>
-    </section>
-
-    <section class="card" style="margin-top:18px;">
-      <h2>시장 레벨 한눈에 보기</h2>
-      <p>금리 레벨 자체는 이미 연초 대비 상당 부분 올라와 있습니다. 특히 2년물은 연초 대비 +16.6bp로 정책 기대의 재조정이 반영되었고, 10년물과 30년물은 절대금리 수준 자체가 다시 높은 구간으로 올라왔습니다.</p>
-      <div class="two-col">
-        <figure>
-          <img class="chart" src="assets/yield_curve.png" alt="yield curve" />
-          <figcaption>수익률곡선은 프런트보다 롱엔드가 더 높은 전형적인 우상향 형태입니다. 다만 2s10s는 +57.1bp로 이미 꽤 스티프합니다.</figcaption>
-        </figure>
-        <figure>
-          <img class="chart" src="assets/daily_change.png" alt="daily change" />
-          <figcaption>당일 변동은 전구간 상승이지만, 10년-30년 구간이 상대적으로 더 크게 밀리며 bear steepening 성격이 강했습니다.</figcaption>
-        </figure>
-      </div>
-      <div class="two-col" style="margin-top:18px;">
-        <figure>
-          <img class="chart" src="assets/ytd_change.png" alt="ytd change" />
-          <figcaption>연초 이후로는 2년물이 가장 많이 올랐고, 장기물은 절대레벨은 높지만 상승폭은 상대적으로 제한적입니다.</figcaption>
-        </figure>
-        <figure>
-          <img class="chart" src="assets/curve_spreads.png" alt="curve spreads" />
-          <figcaption>커브 스프레드 가운데 10s/30s가 65.1bp로 가장 가파릅니다. JPM은 특히 5s/30s가 펀더멘털 대비 약 10bp 정도 과도하게 스티프하다고 봅니다.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="grid" style="margin-top:18px;">
-      <article class="card">
-        <h2>Fed 경로: 시장과 JPM의 40bp 괴리</h2>
-        <p>JPM은 시장이 연준의 향후 완화 경로를 너무 빨리 혹은 너무 크게 반영하고 있다고 봅니다. 보고서에서는 OIS 포워드 기준으로 <strong>완전한 25bp 인하가 10월에야 가격에 반영</strong>되고 있고, 그럼에도 시장 가격은 JPM 고유 전망보다 여전히 비둘기적이라고 지적합니다.</p>
-        <figure>
-          <img class="chart" src="assets/fed_gap.png" alt="fed gap" />
-          <figcaption>핵심은 숫자 자체보다 방향입니다. JPM은 시장의 연내 인하 기대가 아직 과하다고 보고 전술적으로는 bearish bias를 유지합니다.</figcaption>
-        </figure>
-        <p>즉, 경기 둔화 우려와 향후 Fed 의장 교체 기대가 시장에 남아 있지만, JPM은 기업심리 개선이 결국 노동수요 회복으로 이어질 가능성을 더 중시합니다. 그래서 단기적으로는 시장과 JPM 전망이 쉽게 수렴하지 않을 수 있다는 판단입니다.</p>
-      </article>
-      <article class="card">
-        <h2>CPI 해석: 숫자는 무난, 내용은 완전한 안도 아님</h2>
-        <p>2월 헤드라인 CPI는 0.27%, 코어는 0.22%로 큰 surprise는 아니었습니다. 하지만 세부적으로 보면 서비스 쪽의 단단함이 완전히 꺾이지 않았고, 그 결과 JPM은 2월 코어 PCE를 0.41% 수준으로 추정합니다. 이는 연준이 안심하기엔 여전히 높은 흐름입니다.</p>
-        <p>반면 긍정적인 부분도 있습니다. <strong>임차인 실질 임대료 상승률이 0.13%</strong>로 5년여 만의 최저 수준을 보였고, 중고차 가격도 약세였습니다. 보고서는 2026년 동안 주거비 인플레이션이 점진적으로 둔화될 것으로 봅니다.</p>
-        <figure>
-          <img class="chart" src="assets/breakevens.png" alt="breakevens" />
-          <figcaption>인플레이션 기대는 꺾이기보다 다시 넓어지는 방향입니다. 5년물 BE 263.7bp, 10년물 237.8bp, 30년물 224.5bp입니다.</figcaption>
-        </figure>
-      </article>
-    </section>
-
-    <section class="card" style="margin-top:18px;">
-      <h2>공급과 T-bill 수급: 단기물은 오히려 강해질 수 있다</h2>
-      <p>이번 자료에서 가장 실무적으로 중요한 부분은 공급 전망입니다. JPM은 2026년 민간 순차입 수요 2.097조달러 가운데 6,340억달러가 T-bill 형태로 조달될 것으로 보며, Fed의 4,900억달러 매입을 감안하면 민간이 실제로 추가 보유해야 하는 bill 증가는 1,440억달러 정도로 봅니다.</p>
-      <div class="two-col">
-        <figure>
-          <img class="chart" src="assets/funding_mix.png" alt="funding mix" />
-          <figcaption>쿠폰물은 여전히 공급의 중심이지만, bill은 세금 납부 시즌 전후로 순발행과 순상환의 리듬이 강하게 나타납니다.</figcaption>
-        </figure>
-        <div>
-          <p>JPM은 3월 17일 전후부터 <strong>실질적인 순상환(net paydown)</strong>이 시작될 가능성을 제시합니다. 이 경우 1개월 bill은 과거 패턴상 상대적으로 richening될 가능성이 높습니다.</p>
-          <p>즉, 장기물은 공급 소화 부담이 남아 있지만, 프런트엔드 bill은 세금 시즌과 분기말 수급 때문에 오히려 강해질 수 있다는 이야기입니다. 은행 Treasury나 단기 유동성 운용 관점에서는 이 구분이 매우 중요합니다.</p>
-          <div class="callout">
-            <strong>실무 해석</strong><br/>
-            bill 구간은 단순히 정책 기대만 볼 것이 아니라, TGA 경로·세금 유입·분기말 레포 환경까지 함께 봐야 합니다. 이번 리포트는 바로 그 포인트를 강조합니다.
-          </div>
+      <div>
+        <div class="callout"><strong>실무적 해석</strong><br>지금 국면에서는 “미국채 금리가 더 오르나, 내리나”보다 <strong>어느 구간이 더 약하고, 어느 구간이 수급상 지지를 받는지</strong>가 더 중요합니다. 보고서는 그 관점에서 장기물 steepener 일부 차익실현을 권고하고, 반대로 단기 T-bill은 세금 시즌과 분기말 수급을 이유로 상대적으로 강해질 가능성을 제시합니다.</div>
+        <div style="margin-top:12px">
+          <span class="badge">Bear-steepening</span><span class="badge">1y1y OIS 상단 복귀</span><span class="badge">Core PCE 추정 0.41% m/m</span><span class="badge">FY26 적자 1.875조달러</span><span class="badge">CY26 순민간차입 2.097조달러</span><span class="badge">T-bill 순상환 시작 예상 3/17</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="grid" style="margin-top:18px;">
-      <article class="card">
-        <h2>30년물 입찰: 밸류는 버팀목, 테크니컬은 부담</h2>
-        <p>3월 30년물 재개방 입찰은 220억달러 규모입니다. 절대금리 수준과 곡선 밸류에이션만 놓고 보면 수요를 끌어낼 수 있는 환경입니다. 다만 보고서는 <strong>시장 깊이 저하와 높은 변동성</strong> 때문에 입찰 소화를 위해 어느 정도의 콘세션이 필요할 수 있다고 봅니다.</p>
-        <figure>
-          <img class="chart" src="assets/auction_results.png" alt="auction results" />
-          <figcaption>최근 6번의 30년 입찰을 보면 2월은 -2.2bp stop-through와 94.1%의 높은 end-user 비중으로 매우 강했습니다. 하지만 이번에는 기술적 배경이 그만큼 우호적이지 않습니다.</figcaption>
-        </figure>
-      </article>
-      <article class="card">
-        <h2>전술 포지셔닝 해석</h2>
-        <p>JPM의 전술 메시지는 세 갈래로 정리할 수 있습니다.</p>
-        <ul>
-          <li><strong>듀레이션:</strong> 전반적으로 tactical bearish. 금리 하락을 쫓기보다 높은 레벨에서의 조정 가능성을 더 중시합니다.</li>
-          <li><strong>커브:</strong> 2s/5s/10s belly-cheapening butterfly 유지. 반면 5s/20s steepener는 이익실현 권고입니다. 즉, 곡선 전체를 일방향으로 보기보다 특정 구간 상대가치에 방점이 있습니다.</li>
-          <li><strong>인플레 링크드:</strong> 브레이크이븐은 상승 모멘텀이 있으나 유가와 지정학 변수가 커서 outright bullish보다는 중립을 유지합니다.</li>
-        </ul>
-        <p>은행 포트폴리오 관점에서는 장기물 베타를 무작정 늘리기보다, front-end bill의 계절적 강세와 belly/long-end 상대가치 왜곡을 분리해서 보라는 메시지로 읽힙니다.</p>
-      </article>
-    </section>
+  <section class="section">
+    <h2>시장 레벨과 곡선 변화</h2>
+    <div class="grid2eq">
+      <div class="chart-card"><div class="chart-title">주요 금리 레벨</div><div class="chart-sub">온더런 금리 종가</div><div id="barYields"></div></div>
+      <div class="chart-card"><div class="chart-title">당일 금리 변화</div><div class="chart-sub">장기물로 갈수록 상승폭 확대</div><div id="barChange"></div></div>
+    </div>
+    <p style="margin-top:14px">장 마감 기준 2년 3.63%, 5년 3.78%, 10년 4.21%, 30년 4.86%로 전 구간이 약세를 보였고, 특히 30년물은 하루에 8.4bp 상승해 가장 약했습니다. 2s/10s는 57.1bp, 10s/30s는 65.1bp로 커브는 bear-steepening 형태를 보였습니다. 흥미로운 점은 연초 이후 기준으로 보면 2년물이 16.6bp, 10년은 5.3bp, 30년은 2.6bp 상승에 그쳐, 올해 누적 관점에서는 여전히 앞단의 금리 재가격이 더 컸다는 점입니다. 즉, 이날의 steepening은 연중 큰 흐름의 반전이라기보다, 정책 기대·입찰·공급이 순간적으로 장기구간에 더 큰 부담을 준 하루라고 해석하는 편이 자연스럽습니다.</p>
+  </section>
 
-    <section class="card" style="margin-top:18px;">
-      <h2>데이터 표</h2>
-      <p class="muted">노션에 그대로 붙여넣기 쉬운 표 형태로 정리했습니다.</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>구간</th><th>종가(%)</th><th>1일 변화(bp)</th><th>YTD 변화(bp)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>4주</td><td>3.70</td><td>0.5</td><td>13.0</td></tr>
-            <tr><td>8주</td><td>3.69</td><td>-0.5</td><td>9.0</td></tr>
-            <tr><td>13주</td><td>3.68</td><td>0.5</td><td>4.7</td></tr>
-            <tr><td>17주</td><td>3.69</td><td>0.6</td><td>5.7</td></tr>
-            <tr><td>26주</td><td>3.65</td><td>0.5</td><td>3.7</td></tr>
-            <tr><td>52주</td><td>3.61</td><td>3.5</td><td>11.2</td></tr>
-            <tr><td>2년</td><td>3.63</td><td>6.6</td><td>16.6</td></tr>
-            <tr><td>5년</td><td>3.78</td><td>6.7</td><td>7.1</td></tr>
-            <tr><td>10년</td><td>4.21</td><td>7.0</td><td>5.3</td></tr>
-            <tr><td>30년</td><td>4.86</td><td>8.4</td><td>2.6</td></tr>
-            <tr><td>2s/5s</td><td>14.7bp</td><td>0.1</td><td>-9.5</td></tr>
-            <tr><td>5s/10s</td><td>42.4bp</td><td>0.3</td><td>-1.8</td></tr>
-            <tr><td>2s/10s</td><td>57.1bp</td><td>0.4</td><td>-11.3</td></tr>
-            <tr><td>10s/30s</td><td>65.1bp</td><td>1.4</td><td>-2.7</td></tr>
-            <tr><td>5년 BE</td><td>263.7bp</td><td>5.5</td><td>36.4</td></tr>
-            <tr><td>10년 BE</td><td>237.8bp</td><td>4.0</td><td>13.1</td></tr>
-            <tr><td>30년 BE</td><td>224.5bp</td><td>3.6</td><td>2.2</td></tr>
-          </tbody>
-        </table>
+  <section class="section">
+    <h2>정책 기대: 시장은 덜 비둘기적으로 조정됐지만, 아직 JPM보다 완화적이다</h2>
+    <div class="grid2">
+      <div class="chart-card"><div class="chart-title">1y1y OIS 추이</div><div class="chart-sub">시장이 보는 향후 1년 뒤 1년 금리 기대는 범위 상단 쪽으로 복귀</div><div id="lineOIS"></div></div>
+      <div>
+        <p>보고서는 코어 CPI가 표면적으로는 “무난”했더라도, 세부 내역상 코어 PCE 환산이 0.41% m/m 정도로 추정된다는 점을 들어 OIS가 덜 비둘기적으로 재조정된 것으로 설명합니다. 그 결과 money market은 완전한 25bp 인하를 10월 전까지는 충분히 가격에 반영하지 않고 있으며, 1y1y OIS도 지난해 여름 이후 유지하던 박스권 상단 쪽으로 되돌아왔습니다.</p>
+        <p>그럼에도 JPM은 여전히 시장 가격이 자사 전망보다 약 40bp 정도 더 완화적인 경로를 반영하고 있다고 봅니다. 이는 노동시장 둔화 우려가 잔존하고 있고, 차기 연준 의장 교체 이후 보다 공격적인 인하 가능성을 시장이 일부 상정하고 있기 때문이라는 설명입니다. 다만 JPM은 단기적으로 비즈니스 심리 반등이 노동수요 회복으로 이어질 여지가 있다고 보고 있으며, 그래서 전술적으로는 여전히 약세적 듀레이션 뷰를 유지하고 belly cheapening butterfly 포지션을 보유합니다.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <div class="footer">Source: J.P. Morgan, 11 Mar 2026 report. This HTML summary is a reconstructed Korean briefing for internal research use.</div>
-  </main>
+  <section class="section">
+    <h2>CPI 해석: headline은 무난하지만, core의 질감은 아직 단단하다</h2>
+    <div class="grid2eq">
+      <div class="chart-card"><div class="chart-title">2월 CPI 주요 항목</div><div class="chart-sub">m/m 기준</div><div id="barCPI"></div></div>
+      <div class="chart-card"><div class="chart-title">최근 인플레이션 흐름</div><div class="chart-sub">재화·서비스·주거비의 3개월 연율 개념도</div><div id="lineInfl"></div></div>
+    </div>
+    <p style="margin-top:14px">헤드라인 CPI는 0.27% m/m, 코어 CPI는 0.22% m/m으로 대체로 컨센서스 부근이었습니다. 그러나 항목별로 보면 음식물가가 0.4%, 에너지가 0.6% 올라 헤드라인을 받쳤고, 코어 내부에서는 서비스가 여전히 단단한 반면 재화가 일부 상쇄하는 구조였습니다. 주거비에서는 OER가 0.22%로 전월과 비슷했고, primary rent는 0.13%로 5년 내 가장 약한 월간 상승률을 기록해 임대료 둔화 방향성 자체는 살아 있습니다. JPM은 연간 평균 기준으로 2026년 임대료 인플레이션이 2.7~2.8% 정도까지 완만하게 내려갈 것으로 봅니다.</p>
+    <p>문제는 주거비 외의 나머지입니다. 보고서는 used cars를 제외한 core goods가 최근 3개월 연율 기준 2.73% 상승해 2023년 4월 이후 가장 강한 흐름이라고 지적합니다. 관세 전가 가능성과 고용-성장 재연동이 임금과 서비스 가격의 끈적임으로 이어질 수 있다는 논리입니다. 또한 supercore inflation도 최근 3개월 연율 5% 수준까지 올라와 있어, 시장이 기대하는 만큼 빠른 디스인플레이션 경로가 현실화되지 않을 수 있다는 경고를 담고 있습니다. 요약하면 “rent가 내려오니 안심”이라고 보기에는 아직 이르다는 뜻입니다.</p>
+  </section>
+
+  <section class="section">
+    <h2>브레이크이븐과 인플레이션 기대: 단기적으로는 확대, 그러나 JPM은 중립</h2>
+    <div class="grid2eq">
+      <div class="chart-card"><div class="chart-title">TIPS 브레이크이븐</div><div class="chart-sub">현재 레벨과 연초 대비 변화</div><div id="barBE"></div></div>
+      <div class="chart-card"><div class="chart-title">2026년 순 민간차입 구성</div><div class="chart-sub">T-bills vs Coupons</div><div id="donutMix"></div></div>
+    </div>
+    <p style="margin-top:14px">CPI 이후 TIPS는 유가와 듀레이션 움직임을 감안해도 상대적으로 강했고, 5년 spot breakeven은 약 5bp 확대됐습니다. JPM의 공정가치 모델에서는 5년 BE가 아직도 대략 15bp가량 좁다고 평가해, 이날 확대가 fundamentals로의 평균회귀 성격도 있었다고 설명합니다. 동시에 5Yx5Y 인플레이션 스왑도 3bp 상승해 수개월 저점에서 반등했습니다.</p>
+    <p>그렇다고 해서 JPM이 브레이크이븐 강세를 적극 권하는 것은 아닙니다. 이유는 유가의 방향성이 너무 변동적이기 때문입니다. 보고서는 장기 인플레 기대가 유가와 역사적으로 높은 상관을 보여 왔지만, 유가 급등이 오래 지속되면 오히려 실질 소비를 훼손해 장기 기대인플레를 눌러버릴 수 있다고 봅니다. 즉, 공급충격이 기대인플레를 항상 밀어 올린다고 단순화할 수 없기 때문에, 현재 환경에서는 breakevens에 대해 중립 스탠스를 유지합니다.</p>
+  </section>
+
+  <section class="section">
+    <h2>재무부 공급 업데이트: 2026년은 아직 버틸 수 있지만, 2027년부터는 부담이 커진다</h2>
+    <p class="lead">JPM은 2026 회계연도 적자를 1.875조달러, 2027 회계연도 적자를 2.0조달러로 추정합니다. 이전 전망보다 소폭 낮아졌지만, 큰 그림에서는 재정수요가 여전히 크고 2027년 이후 쿠폰 증액 필요성이 점점 커지는 구조입니다.</p>
+    <p>보고서에 따르면 현행 쿠폰 경매 일정만으로도 2026년에는 재무부가 비교적 잘 펀딩되어 있습니다. 그래서 JPM은 재무부가 2027년 2월 이전에 쿠폰 경매 사이즈를 늘릴 가능성이 낮다고 봅니다. 이는 단기적으로는 “당장 중장기 쿠폰 공급이 갑자기 폭증하지는 않는다”는 안도감을 주지만, 반대로 말하면 2026년의 자금 조달 유연성은 T-bill 운용과 현금잔고(TGA) 조정에 더 많이 의존하게 된다는 뜻이기도 합니다.</p>
+    <div class="table-wrap" style="margin-top:14px">
+      <table>
+        <thead>
+          <tr><th>항목</th><th>FY2026</th><th>FY2027</th><th>해석</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>JPM 적자 전망</td><td>1.875조달러</td><td>2.0조달러</td><td>이전 전망 대비 소폭 하향</td></tr>
+          <tr><td>쿠폰 경매 일정</td><td>현행 유지 가능</td><td>부담 확대</td><td>증액 시작 시점은 2027년 2월 이후로 예상</td></tr>
+          <tr><td>민간 순차입(CY26)</td><td colspan="2">2.097조달러</td><td>T-bills 6,340억달러, Coupons 1.462조달러</td></tr>
+          <tr><td>Fed 2차시장 매입</td><td colspan="2">4,900억달러</td><td>민간이 실제 추가로 흡수할 T-bill은 1,440억달러 수준</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:14px">특히 calendar year 2026 기준 순 민간차입 규모 2.097조달러는 결코 작지 않습니다. 이 가운데 T-bills가 6,340억달러, coupons가 1.462조달러로 추정되는데, Fed의 2차시장 매입 4,900억달러를 감안하면 민간이 실제로 추가 보유해야 하는 bill 증가는 1,440억달러 정도입니다. 즉 headline issuance 숫자와 실제 민간 소화 부담 사이에는 차이가 있으며, JPM은 이를 분리해 보는 것이 중요하다고 말합니다.</p>
+  </section>
+
+  <section class="section">
+    <h2>단기물 전략: T-bill은 세금 시즌과 분기말 수급의 수혜를 받을 가능성</h2>
+    <div class="grid2">
+      <div>
+        <p>이번 주 재무부는 가이던스에 맞춰 세금 신고 시즌을 앞두고 T-bill 경매 사이즈 축소를 시작했습니다. JPM은 4월 말까지 민간기준 T-bill 순발행이 -2,180억달러, Fed 매입까지 차감하면 -3,090억달러가 될 것으로 추정합니다. 동시에 TGA는 세금 유입으로 1조달러 수준까지 높아질 수 있습니다. 이는 단기물 공급이 실제로 줄어드는 구간이 곧 시작된다는 뜻입니다.</p>
+        <p>밸류에이션 측면에서도 단기 T-bills는 최근 순발행 급증 때문에 SOFR 대비 꽤 싸졌습니다. 4주, 6주, 8주, 13주 구간의 matched-maturity spread는 최근 3개월 분포 상 비교적 싼 쪽에 위치해 있습니다. 이런 상태에서 실제 paydown이 시작되면, 역사적으로 1개월 bill은 거의 예외 없이 richening을 보여 왔습니다. JPM은 첫 순상환 실현일을 3월 17일 전후로 보고 있으며, 그 즈음부터 앞단 bill의 강세 압력이 나타날 수 있다고 봅니다.</p>
+      </div>
+      <div>
+        <div class="callout"><strong>왜 1M bill이 유리한가</strong><br>세금 시즌에는 재무부가 bill을 덜 찍고, 분기말에는 레포 공급이 줄어 투자자 자금이 일시적으로 bill로 몰리기 쉽습니다. 그래서 short-end bill richening은 단순 계절성이 아니라, 실제 현금흐름과 담보 수급이 만드는 패턴으로 이해하는 편이 좋습니다.</div>
+        <p style="margin-top:12px">반면 longer-dated bills에 대해서는 JPM도 톤이 더 중립적입니다. 분기말 효과가 상대적으로 약하고, auction size 변화도 앞단에 더 집중될 가능성이 높기 때문입니다. 따라서 bill 구간 안에서도 “짧을수록 유리”라는 상대가치 관점이 살아 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>30년물 입찰 프리뷰: 밸류에이션은 괜찮지만, 기술적 환경은 까다롭다</h2>
+    <div class="grid3">
+      <div class="chart-card"><div class="chart-title">시장 깊이</div><div class="chart-sub">최근 분쟁 이후 depth 급감</div><div id="depthChart"></div></div>
+      <div class="chart-card"><div class="chart-title">30년 온더런 거래량</div><div class="chart-sub">입찰일 스파이크 경향</div><div id="volChart"></div></div>
+      <div class="chart-card"><div class="chart-title">최근 30년 입찰 통계</div><div class="chart-sub">tail / bid-cover / end-user</div><div id="auctionMini"></div></div>
+    </div>
+    <p style="margin-top:14px">재무부는 22bn 규모의 30년물 재개찰을 실시합니다. 직전 2월 입찰은 pre-auction 대비 2.2bp stop-through를 기록했고, end-user demand도 94.1%로 매우 강했습니다. 특히 investment manager takedown이 73.5%까지 뛰면서 결과를 견인했습니다. 표면적으로 보면 이번에도 과거 실적을 근거로 강한 입찰을 기대할 수 있어 보입니다.</p>
+    <p>하지만 보고서는 이번에는 기술적 환경이 당시보다 덜 우호적이라고 강조합니다. 첫째, 30년 금리는 지난 입찰 이후 11bp 상승해 레벨 자체는 매력적이지만, 동시에 변동성이 높아져 딜러와 실수요 모두 공격적으로 받기 어려운 환경입니다. 둘째, 지정학적 충돌 이후 market depth가 눈에 띄게 얕아졌고, 이는 대규모 공급을 소화하는 과정에서 더 큰 price concession을 요구할 수 있습니다. 셋째, 같은 주간에 회사채 발행도 많아 투자자 자금이 분산됩니다. 그래서 JPM은 outright valuation과 curve valuation은 양호하지만, 입찰이 매끄럽게 소화되려면 추가 콘세션이 붙을 수 있다고 봅니다.</p>
+    <p>이 맥락에서 보고서가 장기 구간 steepener 차익실현을 권하는 이유가 분명해집니다. 장기물은 ‘싸 보이는 것’만으로는 충분하지 않고, 누가 그 공급을 언제 어떻게 받아줄지까지 확인해야 하기 때문입니다.</p>
+  </section>
+
+  <section class="section">
+    <h2>포지셔닝과 테크니컬: 극단적 쏠림은 아니지만, 변동성 체제로의 전환 가능성은 경계</h2>
+    <p>부록의 포지셔닝 지표들을 보면, Treasury Client Survey는 1년 z-score 기준 음수 영역이고, CTA와 액티브 코어본드펀드, 매크로 헤지펀드의 10년물 노출도도 대체로 과도한 롱이라고 보긴 어렵습니다. 즉 이번 약세가 “포지션이 너무 한쪽으로 몰려 생긴 급청산”이라기보다는, 거시 뉴스와 공급 환경, 유동성 저하가 결합된 결과라는 해석이 더 타당합니다.</p>
+    <p>동시에 JPM의 기술 분석 파트는 10년 TIPS breakeven이 230~232bp 지지 위에 있는 한 단기 widening 바이어스가 남아 있다고 봅니다. 다만 주식시장이 주요 지지를 이탈해 변동성 체제로 전환될 경우, 공급측 인플레이션 우려보다 수요파괴 우려가 부각되면서 breakeven이 다시 빠르게 축소될 수 있다고 경고합니다. 즉 현재 시장은 방향성이 단순하지 않고, “인플레-성장-리스크오프” 세 축이 짧은 시간 안에 계속 주도권을 바꿀 수 있는 구간입니다.</p>
+  </section>
+
+  <section class="section">
+    <h2>종합 해석과 실무 포인트</h2>
+    <ul>
+      <li><strong>듀레이션 방향성:</strong> 보고서는 단기적으로 여전히 약세적 톤을 유지하지만, 그 약세가 전 구간에 균등하게 나타난다고 보지는 않습니다. 앞단은 정책 경로 재가격의 여지가 남아 있고, 장기구간은 공급·입찰·유동성의 영향을 더 크게 받습니다.</li>
+      <li><strong>커브 전략:</strong> 이날 steepening은 펀더멘털보다 기술적 요소가 강했다고 보고, 장기구간 steepener 일부 차익실현이 타당하다는 메시지를 줍니다. 즉 커브가 너무 빨리 움직였다는 판단입니다.</li>
+      <li><strong>T-bill 전략:</strong> 세금 시즌과 분기말 효과를 고려하면 1M 중심 앞단 bill richening 가능성이 비교적 설득력 있게 제시됩니다. 단기 현금성 운용 관점에서 참고할 만한 포인트입니다.</li>
+      <li><strong>인플레이션 해석:</strong> rent 둔화는 긍정적이지만, core goods와 supercore의 단단함 때문에 “디스인플레 재가속”을 단정하기는 아직 이릅니다. 물가 둔화 서사가 완전히 복원되지는 않았습니다.</li>
+      <li><strong>입찰/공급 모니터링:</strong> 30년물 입찰 결과와 이후의 시장 depth 회복 여부가 장기금리의 다음 방향성을 좌우할 가능성이 큽니다. 강한 입찰이면 과도한 steepening 일부가 되돌려질 수 있고, 반대로 부진하면 장기구간 압박이 더 이어질 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <div class="footer">Prepared from J.P. Morgan US Treasury Market Daily (11 Mar 2026) and re-expressed in Korean for research-note use.</div>
+</div>
+<script>
+function fmt(v, d=1){ return Number(v).toFixed(d); }
+function svgWrap(w,h,inner){ return `<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">${inner}</svg>`; }
+function text(x,y,s,fill='#b9c2d3',size=11,anchor='middle',weight=500){return `<text x="${x}" y="${y}" fill="${fill}" font-size="${size}" text-anchor="${anchor}" font-weight="${weight}" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Noto Sans KR,Arial,sans-serif">${s}</text>`;}
+function barChart(el, labels, data, opts={}){const w=420,h=250,m={t:20,r:16,b:42,l:46}, plotW=w-m.l-m.r, plotH=h-m.t-m.b; const max = opts.max ?? Math.max(...data.map(v=>Math.abs(v)), 0)*1.15; const min = opts.min ?? (opts.zeroFloor ? 0 : Math.min(...data,0)); const rng = max-min || 1; let g=''; for(let i=0;i<=4;i++){const y=m.t + plotH*i/4; const val=(max - (rng*i/4)); g += `<line x1="${m.l}" y1="${y}" x2="${w-m.r}" y2="${y}" stroke="#2f3848" stroke-width="1"/>`; g += text(m.l-8,y+4, opts.suffix?`${fmt(val, opts.decimals??0)}${opts.suffix}`:fmt(val, opts.decimals??0), '#93a0b5', 10, 'end');} const bw = plotW/labels.length*0.58; labels.forEach((lab,i)=>{const x = m.l + plotW*(i+0.5)/labels.length; const y0 = m.t + (max-0)/rng*plotH; const v = data[i]; const y = m.t + (max-v)/rng*plotH; const top = Math.min(y,y0), height=Math.abs(y0-y); const fill = Array.isArray(opts.colors)?opts.colors[i]: (v>=0?(opts.posColor||'#77a7ff'):(opts.negColor||'#ef6a6a')); g += `<rect x="${x-bw/2}" y="${top}" width="${bw}" height="${Math.max(2,height)}" rx="6" fill="${fill}" />`; g += text(x,h-18,lab,'#c6d0df',10); g += text(x, top-6, opts.valueSuffix ? `${fmt(v, opts.decimals??1)}${opts.valueSuffix}` : fmt(v, opts.decimals??1), '#eef2f8', 10);}); g += `<line x1="${m.l}" y1="${m.t+plotH}" x2="${w-m.r}" y2="${m.t+plotH}" stroke="#5f6c81"/>`; document.getElementById(el).innerHTML = svgWrap(w,h,g);}
+function lineChart(el, labels, series, opts={}){const w=420,h=250,m={t:18,r:16,b:38,l:42}, plotW=w-m.l-m.r, plotH=h-m.t-m.b; const all=series.flatMap(s=>s.data); const min=opts.min ?? Math.min(...all), max=opts.max ?? Math.max(...all); const rng=max-min || 1; let g=''; for(let i=0;i<=4;i++){const y=m.t + plotH*i/4; const val=max-rng*i/4; g += `<line x1="${m.l}" y1="${y}" x2="${w-m.r}" y2="${y}" stroke="#2f3848" stroke-width="1"/>`; g += text(m.l-8,y+4, opts.suffix?`${fmt(val, opts.decimals??2)}${opts.suffix}`:fmt(val, opts.decimals??2), '#93a0b5', 10, 'end');} labels.forEach((lab,i)=>{const x = m.l + plotW*(i/(labels.length-1)); if (i<labels.length-1) g += `<line x1="${x}" y1="${m.t}" x2="${x}" y2="${m.t+plotH}" stroke="#1a2230" stroke-width="1"/>`; if (i<6 || i===labels.length-1) g += text(x,h-14,lab,'#c6d0df',10);}); series.forEach((s)=>{let pts = s.data.map((v,i)=>{const x = m.l + plotW*(i/(labels.length-1)); const y = m.t + (max-v)/rng*plotH; return [x,y];}); const d = pts.map((p,i)=> (i===0?`M ${p[0]} ${p[1]}`:`L ${p[0]} ${p[1]}`)).join(' '); g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`; const last=pts[pts.length-1], lv=s.data[s.data.length-1]; g += `<circle cx="${last[0]}" cy="${last[1]}" r="3.5" fill="${s.color}"/>`; g += text(last[0]-4,last[1]-8, `${fmt(lv, opts.decimals??2)}${opts.valueSuffix||''}`, s.color, 10, 'end', 700);}); document.getElementById(el).innerHTML = svgWrap(w,h,g);}
+function donut(el, items){const w=420,h=250,cx=145,cy=122,r=68,inner=38,total=items.reduce((a,b)=>a+b.value,0); let start=-Math.PI/2, g=''; function arcPath(a0,a1,R,r){const x0=cx+Math.cos(a0)*R, y0=cy+Math.sin(a0)*R; const x1=cx+Math.cos(a1)*R, y1=cy+Math.sin(a1)*R; const x2=cx+Math.cos(a1)*r, y2=cy+Math.sin(a1)*r; const x3=cx+Math.cos(a0)*r, y3=cy+Math.sin(a0)*r; const large = a1-a0>Math.PI?1:0; return `M ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1} L ${x2} ${y2} A ${r} ${r} 0 ${large} 0 ${x3} ${y3} Z`; } items.forEach((it)=>{const ang = (it.value/total)*Math.PI*2, end=start+ang; g += `<path d="${arcPath(start,end,r,inner)}" fill="${it.color}"/>`; start=end;}); g += text(cx,115,'CY26', '#f7f9fc', 16, 'middle', 700); g += text(cx,136,'2.097tn', '#cbd6e7', 14, 'middle', 600); let y=60; items.forEach(it=>{g += `<rect x="255" y="${y-10}" width="12" height="12" rx="2" fill="${it.color}"/>`; g += text(275,y,it.label,'#e3e9f5',12,'start',600); g += text(390,y,`${it.value}bn`,'#aab6ca',12,'end',500); y += 28;}); document.getElementById(el).innerHTML=svgWrap(w,h,g);}
+barChart('barYields',['2Y','5Y','10Y','30Y'],[3.63,3.78,4.21,4.86],{min:0,max:5.2,decimals:2,suffix:'%',valueSuffix:'%',colors:['#77a7ff','#8db6ff','#d6b05d','#ef6a6a']});
+barChart('barChange',['2Y','5Y','10Y','30Y'],[6.6,6.7,7.0,8.4],{min:0,max:10,decimals:1,suffix:'bp',valueSuffix:'bp',colors:['#77a7ff','#77a7ff','#d6b05d','#ef6a6a']});
+lineChart('lineOIS',['Mar-25','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan-26','Feb','Mar-26'],[{label:'1y1y OIS', color:'#77a7ff', data:[3.62,3.55,3.48,3.30,3.15,3.05,3.10,3.20,3.25,3.30,3.32,3.03,3.25]}],{min:2.8,max:3.7,decimals:2,valueSuffix:'%'});
+barChart('barCPI',['Headline','Core','Food','Energy','OER','Rent','Used cars'],[0.27,0.22,0.40,0.60,0.22,0.13,-0.40],{min:-0.6,max:0.8,decimals:2,suffix:'%',valueSuffix:'%',posColor:'#77a7ff',negColor:'#ef6a6a'});
+lineChart('lineInfl',['Feb-21','Aug-21','Feb-22','Aug-22','Feb-23','Aug-23','Feb-24','Aug-24','Feb-25','Aug-25','Feb-26'],[{label:'재화', color:'#d6b05d', data:[2.0,7.0,9.5,5.5,4.5,1.0,-1.0,0.4,0.8,1.3,2.73]},{label:'서비스', color:'#77a7ff', data:[2.5,5.3,6.0,6.4,6.5,6.0,5.5,5.0,4.5,4.8,5.0]},{label:'주거비', color:'#8f98a8', data:[2.0,5.0,4.5,7.5,8.5,7.2,6.0,5.4,4.8,4.1,3.1]}],{min:-2,max:11,decimals:1,valueSuffix:'%'});
+barChart('barBE',['5Y BE','10Y BE','30Y BE','5Y YTD','10Y YTD','30Y YTD'],[263.7,237.8,224.5,36.4,13.1,2.2],{min:0,max:280,decimals:1,suffix:'bp',valueSuffix:'bp',colors:['#d6b05d','#d6b05d','#d6b05d','#ef6a6a','#ef6a6a','#ef6a6a']});
+donut('donutMix',[{label:'T-bills', value:634, color:'#77a7ff'},{label:'Coupons', value:1462, color:'#d6b05d'}]);
+lineChart('depthChart',['Mar','May','Jul','Sep','Nov','Jan','Mar'],[{label:'Depth', color:'#77a7ff', data:[410,360,305,270,295,255,180]}],{min:100,max:450,decimals:0});
+barChart('volChart',['OTR avg','OTR aucn','OFR avg','OFR aucn'],[58,83,30,26],{min:0,max:100,decimals:0});
+barChart('auctionMini',['Tail','Bid/Cover','End-user','Inv mgr'],[-2.2,2.66,94.1,73.5],{min:-5,max:100,decimals:1,colors:['#62c28a','#77a7ff','#d6b05d','#ef6a6a']});
+</script>
 </body>
 </html>
