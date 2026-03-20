@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOMC 프리뷰 분석 리포트 | J.P. Morgan · 2026.03.13</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg-base:      #0d0f14;
+    --bg-card:      #13161e;
+    --bg-card2:     #181c26;
+    --border:       #252a38;
+    --border-bright:#323848;
+    --gold:         #c9a84c;
+    --gold-dim:     #8a6f2e;
+    --gold-pale:    #f5e4b0;
+    --text-primary: #e8eaf0;
+    --text-secondary:#8e94a8;
+    --text-muted:   #555d72;
+    --red:          #e05c5c;
+    --green:        #4caf82;
+    --blue:         #5b8dee;
+    --blue-pale:    #a3bff5;
+    --accent-line:  #c9a84c;
+    --max-w:        860px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    background: var(--bg-base);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-base);
+    overflow-x: hidden;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -24px; right: -24px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent 70%);
+  }
+  .source-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .source-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  h1.report-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+  h1.report-title em {
+    font-style: italic;
+    color: var(--gold-pale);
+  }
+  .report-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 24px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+  .meta-item span { color: var(--text-secondary); }
+
+  /* ── SECTION TITLES ── */
+  h2.section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  h2.section-title .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  h3.sub-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  /* ── BODY TEXT ── */
+  .body-text {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.9;
+    margin-bottom: 18px;
+  }
+  .body-text strong { color: var(--text-primary); font-weight: 600; }
+  .body-text .highlight {
+    background: linear-gradient(transparent 60%, rgba(201,168,76,0.18) 60%);
+    color: var(--gold-pale);
+    padding: 0 2px;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    margin-bottom: 56px;
+  }
+
+  /* ── SUMMARY CARDS ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .kpi-card.gold::before { background: var(--gold); }
+  .kpi-card.blue::before { background: var(--blue); }
+  .kpi-card.red::before  { background: var(--red); }
+  .kpi-card.green::before{ background: var(--green); }
+  .kpi-label {
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .kpi-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ── ALERT BOX ── */
+  .alert-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .alert-box .alert-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .alert-box.risk {
+    border-left-color: var(--red);
+  }
+  .alert-box.risk .alert-label { color: var(--red); }
+
+  /* ── TIMELINE / STEPS ── */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 7px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 1px solid var(--bg-base);
+  }
+  .timeline-item .tl-head {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .timeline-item .tl-body {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ── CHART WRAPPER ── */
+  .chart-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 20px 20px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+  .chart-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .chart-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .chart-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── DOT PLOT SVG CHART ── */
+  .dot-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    fill: var(--text-muted);
+  }
+  .axis-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    fill: #555d72;
+  }
+  .grid-line { stroke: #252a38; stroke-width: 1; }
+  .median-line { stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 4,3; }
+  .jpm-line { stroke: var(--red); stroke-width: 1.5; stroke-dasharray: 3,3; }
+
+  /* ── TABLE ── */
+  .tbl-scroll {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin: 20px 0;
+  }
+  table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead tr { background: #161a24; }
+  thead th {
+    padding: 12px 14px;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tbody td {
+    padding: 11px 14px;
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody td:first-child { color: var(--text-primary); font-weight: 500; }
+  .tag-up   { color: var(--red);   font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .tag-down { color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .tag-hold { color: var(--gold);  font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+
+  /* ── STRATEGY BOX ── */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .strat-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .strat-card .strat-icon {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .strat-card .strat-head {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .strat-card .strat-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 36px 0;
+  }
+
+  /* ── INLINE BADGE ── */
+  .badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin: 0 2px;
+  }
+  .badge-hold { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid var(--gold-dim); }
+  .badge-cut  { background: rgba(91,141,238,0.12); color: var(--blue-pale); border: 1px solid #334d88; }
+  .badge-risk { background: rgba(224,92,92,0.12);  color: var(--red);  border: 1px solid #6b2a2a; }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin-bottom: 48px;
+  }
+  .toc-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .toc-list li a {
+    text-decoration: none;
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+  .toc-list li a:hover { color: var(--gold); }
+  .toc-list li a .toc-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    min-width: 24px;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ── HEADER ── -->
+  <header class="report-header">
+    <div class="source-tag">J.P. Morgan · North America Economic Research</div>
+    <h1 class="report-title">FOMC 프리뷰 분석 리포트<br><em>금리 동결 그 이후, 점도표가 말하는 것</em></h1>
+    <p class="report-sub">2026년 3월 FOMC 회의 결과 예측 — 금리 경로, 경제 전망 수정, 기자회견 쟁점 분석</p>
+    <div class="meta-row">
+      <div class="meta-item">작성일 <span>2026.03.13</span></div>
+      <div class="meta-item">원저자 <span>Michael Feroli, JPMorgan Chase Bank NA</span></div>
+      <div class="meta-item">대상 회의 <span>2026년 3월 FOMC</span></div>
+      <div class="meta-item">현재 기준금리 <span>3.50 – 3.75%</span></div>
+    </div>
+  </header>
+
+  <!-- ── TOC ── -->
+  <nav class="toc">
+    <div class="toc-title">목차</div>
+    <ul class="toc-list">
+      <li><a href="#s1"><span class="toc-num">01</span> 핵심 요약</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span> 현재 정책 레벨 & 시장 배경</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span> 점도표(Dot Plot) 전망 분석</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span> 경제 전망 수정 — 성장·인플레이션·고용</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span> 위원 투표 구도 및 이탈 가능성</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span> 성명서 & 기자회견 예상 포인트</a></li>
+      <li><a href="#s7"><span class="toc-num">07</span> 시각화: 금리 경로 & 경제 전망</a></li>
+      <li><a href="#s8"><span class="toc-num">08</span> 전략적 시사점 & 실무 포인트</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       01 핵심 요약
+  ══════════════════════════════════ -->
+  <section class="section" id="s1">
+    <h2 class="section-title"><span class="num">01</span> 핵심 요약</h2>
+
+    <div class="summary-grid">
+      <div class="kpi-card gold">
+        <div class="kpi-label">3월 금리 결정</div>
+        <div class="kpi-value">동결</div>
+        <div class="kpi-note">3.50–3.75% 유지<br>시장 컨센서스 일치</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-label">2026년 중간값 점도표</div>
+        <div class="kpi-value">1회 인하</div>
+        <div class="kpi-note">3.25–3.50% 예상<br>무인하 전환 확률 ~45%</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-label">Core PCE (2026 전망)</div>
+        <div class="kpi-value">~3%</div>
+        <div class="kpi-note">12월 전망 대비 상향<br>중동 분쟁발 에너지 반영</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">JPM 자체 전망</div>
+        <div class="kpi-value">연내 무인하</div>
+        <div class="kpi-note">점도표 중간값과 괴리<br>인플레 리스크 강조</div>
+      </div>
+    </div>
+
+    <p class="body-text">
+      J.P. Morgan의 Michael Feroli는 2026년 3월 FOMC 회의의 결론이 <strong>기준금리 3.50–3.75% 동결</strong>로 끝날 것이라고 전망한다. 이것은 시장의 폭넓은 컨센서스와 일치하며, 회의 자체의 결론보다 <strong>이번 회의에서 발표될 점도표(Dot Plot)의 중간값이 어디에 위치할 것인지</strong>가 더 중요한 관심사라고 분석가는 지적한다. 12월 점도표 기준으로 2026년 말 중간값은 3.25–3.50%, 즉 연내 25bp 1회 인하를 예고하고 있었다. 이 중간값이 그대로 유지되느냐, 아니면 '무인하'로 이동하느냐가 시장 금리와 달러 방향성을 결정하는 핵심 변수다.
+    </p>
+
+    <div class="alert-box">
+      <div class="alert-label">핵심 메시지</div>
+      J.P. Morgan은 중간값 점도표가 연내 1회 인하를 <em>간신히 유지</em>할 것으로 보지만, 무인하로 전환될 확률을 50%에 못 미치는 수준으로 평가한다. J.P. Morgan 자체 예측은 금리를 연내 <strong>전혀 내리지 않는 것</strong>으로, 이는 점도표 중간값과 1회 인하 격차를 보인다. 이 분기가 포인트다.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       02 현재 정책 레벨 & 시장 배경
+  ══════════════════════════════════ -->
+  <section class="section" id="s2">
+    <h2 class="section-title"><span class="num">02</span> 현재 정책 레벨 & 시장 배경</h2>
+
+    <h3 class="sub-title">1월 회의 이후의 흐름</h3>
+    <p class="body-text">
+      1월 FOMC 회의는 경제에 대해 보다 <strong>낙관적인 어조</strong>로 마무리됐다. 성명서는 경제 활동에 대한 표현을 업그레이드했고, Powell 의장도 기자회견에서 같은 기조를 유지했다. 이후 발표된 경제 지표들은 엇갈린 모습을 보였다. 1월과 2월 고용 보고서는 서로 반대 방향의 서프라이즈를 기록하며 실업률은 <strong>4.4%</strong> 수준에서 거의 변동이 없었다. 이는 노동 시장이 의미 있게 냉각되거나 과열되지 않고 있음을 시사한다.
+    </p>
+    <p class="body-text">
+      문제는 인플레이션이다. 3월 13일(리포트 작성일) 발표된 1월 Core PCE 데이터는 전년 대비 <strong>3.1%</strong> 상승을 기록했다. 이는 Fed의 목표치인 2%를 여전히 크게 상회하는 수준이다. 연준 위원들의 최근 발언들은 대체로 "정책이 현재 좋은 위치에 있으며, 변화가 필요하지 않다"는 방향을 가리키고 있어, 이번 동결 결정에 대한 위원들의 컨센서스는 탄탄한 상태다.
+    </p>
+
+    <h3 class="sub-title">중동 분쟁 — 예측 불가 변수의 등장</h3>
+    <p class="body-text">
+      1월에서 3월 사이 경제 데이터보다 더 크게 전망을 뒤흔든 것은 <strong>중동 분쟁의 심화</strong>다. 모든 거시경제 예측 모델에는 에너지 가격 경로에 대한 가정이 내재되어 있다. 중동 분쟁으로 에너지 가격 경로의 불확실성이 폭발적으로 증가했고, 연준은 여러 시나리오를 바탕으로 경제 전망을 업데이트해야 하는 상황에 놓였다. 분석가는 어떤 시나리오든 <strong>헤드라인 및 Core PCE 인플레이션이 상향 조정될 것</strong>이며, 2026년 수치가 3%를 소폭 밑도는 수준이 될 것으로 전망한다.
+    </p>
+
+    <div class="alert-box risk">
+      <div class="alert-label">리스크 요인</div>
+      중동 분쟁은 인플레이션에 <strong>상방 리스크</strong>(에너지 가격 상승 → PCE 상향)와 성장에 <strong>하방 리스크</strong>(소비 심리 위축, 공급망 교란)를 동시에 부여한다. 이는 Fed의 이중 책무(물가 안정 + 최대 고용)를 모두 더 어렵게 만드는 구조다.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       03 점도표 전망 분석
+  ══════════════════════════════════ -->
+  <section class="section" id="s3">
+    <h2 class="section-title"><span class="num">03</span> 점도표(Dot Plot) 전망 분석</h2>
+
+    <p class="body-text">
+      점도표는 FOMC 위원들이 각자 예상하는 적정 금리 수준을 분기별로 보고하는 도표로, 시장 참여자들이 Fed의 금리 경로를 가늠하는 가장 공식적인 지표다. 이번 회의에서는 <strong>2026년 말 중간값 점도표</strong>의 행방이 가장 큰 관심사다.
+    </p>
+
+    <h3 class="sub-title">12월 점도표 구도와 변화 요인</h3>
+    <p class="body-text">
+      12월 점도표에서 <strong>4명</strong>의 위원이 2026년 중 25bp 1회 인하를 전망했다. 중간값을 '무인하'로 이동시키려면 이 4명 중 3명이 점을 위로 올려야 한다. 분석가는 2월 고용 보고서 발표 전까지는 이 시나리오가 유력하다고 봤지만, 고용 보고서가 비교적 양호하게 나오면서 확신이 약해졌다고 설명한다.
+    </p>
+    <p class="body-text">
+      더 복잡하게 만드는 요소가 있다. 4명의 '1회 인하' 전망자 중 FOMC 리더십(의장, 부의장 등)이 한 명 이상 포함돼 있을 가능성이 있다. 그런데 리더십 그룹은 1월 회의 이후 비교적 침묵을 유지해 왔다. 이는 신임 의장 후보(Kevin Warsh 지명)와 관련된 <em>'의장 오디션'</em>이 마무리된 것과 연관될 수 있다.
+    </p>
+    <p class="body-text">
+      분석가는 리더십이 <strong>고용 측에 약간의 편향(employment bias)</strong>을 갖고 있다고 본다. 즉, 경제 데이터만 보면 금리를 유지해야 하는 상황이지만, Fed 지도부는 고용 시장의 추가 악화를 막기 위해 여유를 두는 경향이 있다는 것이다. 이런 이유에서 J.P. Morgan은 <strong>중간값 점도표가 여전히 연내 1회 인하를 가리킬 것</strong>으로 보되, 무인하로 전환될 확률을 '50%에 약간 못 미치는' 수준으로 평가한다.
+    </p>
+
+    <h3 class="sub-title">2027–2028년 이후 경로</h3>
+    <p class="body-text">
+      2027년 중간값 점도표에 대해서는 변동이 없을 것으로 예상한다. 12월에도 이 값이 분포에서 가장 많이 나타난 최빈값이었기 때문이다. 2028년 중간값도 마찬가지다. 중장기 중립금리(longer-run dot)는 이론적으로 상향 이동해야 하지만, 분석가는 "우리가 계속 그렇게 예측하다가 계속 틀려왔다"며 이번에도 움직이지 않을 가능성이 높다고 솔직하게 인정한다.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════
+       04 경제 전망 수정
+  ══════════════════════════════════ -->
+  <section class="section" id="s4">
+    <h2 class="section-title"><span class="num">04</span> 경제 전망 수정 — 성장·인플레이션·고용</h2>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>12월 전망</th>
+            <th>3월 예상 수정</th>
+            <th>방향</th>
+            <th>주요 배경</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>헤드라인 PCE (2026)</td>
+            <td>–</td>
+            <td>3% 미만</td>
+            <td><span class="tag-up">▲ 상향</span></td>
+            <td>중동 분쟁, 에너지 가격 상승</td>
+          </tr>
+          <tr>
+            <td>Core PCE (2026)</td>
+            <td>–</td>
+            <td>~3% 미만</td>
+            <td><span class="tag-up">▲ 상향</span></td>
+            <td>에너지 파급, 기저효과 불리</td>
+          </tr>
+          <tr>
+            <td>GDP 성장률 (2026)</td>
+            <td>+2.3%</td>
+            <td>약 2.1–2.2%</td>
+            <td><span class="tag-down">▼ 소폭 하향</span></td>
+            <td>정부 셧다운 종료 효과 소멸</td>
+          </tr>
+          <tr>
+            <td>실업률 (2026 말)</td>
+            <td>자연률 하회</td>
+            <td>유사 또는 소폭 상승</td>
+            <td><span class="tag-hold">→ 유지</span></td>
+            <td>고용 보고서 엇갈림, 4.4%대</td>
+          </tr>
+          <tr>
+            <td>장기 GDP 성장률 (longer-run)</td>
+            <td>+1.8%</td>
+            <td>+1.8% (변동 없음)</td>
+            <td><span class="tag-hold">→ 유지</span></td>
+            <td>2020년 말 이후 동결, 공급 낙관론 증가</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="body-text">
+      인플레이션 전망의 상향 수정은 일시적 성격과 구조적 성격이 뒤섞인 상태다. 중동 분쟁이 에너지 가격에 직접적인 압력을 가하는 헤드라인 경로와, 에너지 가격 상승이 제조·물류 비용을 통해 근원 인플레이션으로 흘러드는 간접 경로가 동시에 작동하고 있다. 분석가는 2026년 인플레이션이 <strong>3%를 약간 밑도는 수준</strong>에서 정점을 찍은 뒤, 2027년부터 다소 지연된 디스인플레이션 경로로 복귀할 것으로 본다.
+    </p>
+    <p class="body-text">
+      GDP는 12월에 정부 셧다운 종료의 기계적 효과(일시 복직, 지출 재개)로 2.3%까지 상향됐지만, 그 효과가 소멸되면서 <strong>1–2bp 하향 조정</strong>이 예상된다. 주목할 부분은 장기 GDP 성장률이다. 1월 의사록에서는 스태프와 위원회 모두 공급 측 잠재력에 대해 상당한 기대감을 표출했지만, 공식 수치는 2020년 말부터 1.8%에 고착돼 있다. 이는 구조적 생산성 개선을 정식 전망에 반영하는 데 있어 연준의 보수적인 태도를 반영한다.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════
+       05 위원 투표 구도
+  ══════════════════════════════════ -->
+  <section class="section" id="s5">
+    <h2 class="section-title"><span class="num">05</span> 위원 투표 구도 및 이탈 가능성</h2>
+
+    <p class="body-text">
+      이번 회의의 투표 구도는 비교적 명확하다. 사실상 전원 동결에 찬성할 것으로 예상되지만, 주목해야 할 변수가 하나 있다.
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="tl-head">Governor Miran — 인하 찬성 이탈 가능</div>
+        <div class="tl-body">Miran 이사는 이미 위원회가 인하를 결정하지 않을 경우 이탈(반대) 투표를 하겠다고 예고했다. 그는 현재 금리가 여전히 긴축적이라는 입장을 견지하며 보다 빠른 완화를 선호한다. 시장에서 '비둘기파 이탈'의 대표 사례로 주목받는다.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-head">Governor Waller — 동결 지지로 복귀 전망</div>
+        <div class="tl-body">Waller 이사는 1월 회의에서 인하를 지지하며 이탈 투표를 했다. 그러나 그는 지난 여름 "한 번 이탈하면 계속 이탈할 필요는 없다"고 언급한 바 있어, 이번 회의에서는 위원회와 함께 동결에 찬성할 것으로 분석가는 예상한다.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-head">Governor Bowman — 동결 지지</div>
+        <div class="tl-body">1월 회의에서 동결에 찬성한 만큼, 이번 회의에서도 이탈할 이유가 없다. Bowman은 인플레이션에 대해 강경한 입장을 취해온 위원으로, 현재 정책 스탠스에 동의하는 것으로 평가된다.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-head">Powell 의장 및 리더십 — 동결, '관망' 기조 유지</div>
+        <div class="tl-body">전반적인 리더십 그룹은 "정책이 좋은 위치에 있다"는 메시지를 일관되게 내보내고 있다. 이번 회의에서도 Powell은 경제 발전을 좀 더 지켜보는 wait-and-see 접근법을 강조할 것으로 예상된다.</div>
+      </div>
+    </div>
+
+    <p class="body-text">
+      결론적으로, 이번 회의는 <strong>Miran만의 이탈(인하 선호)</strong>로 사실상 19대1에 가까운 압도적 동결 결정이 날 가능성이 높다. 주목할 비대칭성은, 이탈이 인하 방향에서 일어나는 것이지 추가 동결/긴축 방향이 아니라는 점이다. 시장이 이를 어떻게 해석하느냐에 따라 단기 금리 변동성이 달라질 수 있다.
+    </p>
+  </section>
+
+  <!-- ══════════════════════════════════
+       06 성명서 & 기자회견
+  ══════════════════════════════════ -->
+  <section class="section" id="s6">
+    <h2 class="section-title"><span class="num">06</span> 성명서 & 기자회견 예상 포인트</h2>
+
+    <h3 class="sub-title">성명서 언어 변화</h3>
+    <p class="body-text">
+      J.P. Morgan은 이번 성명서에서 성장 관련 표현이 기존 <strong>"견조한(solid)"에서 "보통 수준의(moderate)"</strong>로 완화될 것으로 예상한다. 이는 경기 모멘텀이 여전히 양호하지만, 중동 발 불확실성이 커진 만큼 과도한 낙관론을 탈피하려는 신중함을 반영한다. 노동 시장 및 인플레이션에 대한 표현은 큰 변화 없이 유지될 것으로 보인다.
+    </p>
+    <p class="body-text">
+      두 번째 단락, 즉 '전망 섹션'에서는 <strong>지정학적 긴장(geopolitical tensions)이 증가된 불확실성의 원천으로 새롭게 명기</strong>될 가능성이 높다. 이는 이중 책무(고용 + 물가) 양쪽 모두에 리스크를 높이는 요소로 기술될 것이다. 이런 언어 추가는 연준이 중동 사태를 단순한 노이즈가 아닌 정책 결정에 영향을 미칠 수 있는 변수로 공식 인식하고 있음을 의미한다.
+    </p>
+
+    <h3 class="sub-title">기자회견 — 경제 외 질문들이 더 많을 것</h3>
+    <p class="body-text">
+      이번 기자회견은 Kevin Warsh가 새 연준 총재 및 의장으로 지명된 이후 처음 열리는 회견이다. 이에 따라 <strong>Powell은 Warsh에 관한 질문, 그리고 자신의 미래 진로에 대한 질문 공세를 받을 것</strong>으로 예상된다. 분석가는 Powell이 두 주제 모두에서 답변을 회피(deflect)할 것으로 본다. 연준 의장이 FOMC 기자회견장에서 자신의 진로를 발표한다는 것은 매우 이례적이기 때문이다.
+    </p>
+    <p class="body-text">
+      경제 정책 측면에서 더 실질적인 질문은 <strong>"팬데믹 이후의 그림자 속에서, 에너지 가격 상승을 여전히 일시적으로 볼 수 있는가"</strong>다. 2021–2023년 인플레이션 경험은 연준이 에너지 가격 상승을 자동적으로 '일시적'으로 분류하는 것에 대한 경계심을 심어 놓았다. 이에 대해 Powell은 <strong>인플레이션 기대치(inflation expectations)의 안정성을 강조</strong>하면서도, 아직 데이터를 좀 더 지켜볼 시간이 있다는 여지를 남길 것으로 예상된다. 즉, 조건부 일시적 분류(conditional look-through)를 제시하는 것이다.
+    </p>
+
+    <div class="alert-box">
+      <div class="alert-label">기자회견 핵심 메시지 예상</div>
+      "현재 정책은 <strong>만약의 상황(양방향 리스크)에 대응할 수 있는 좋은 위치</strong>에 있다. 인플레이션 기대가 잘 고정돼 있는 한, 에너지 가격 상승의 정책 함의를 판단하기 전에 초기 효과를 먼저 관찰할 여유가 있다."
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       07 시각화
+  ══════════════════════════════════ -->
+  <section class="section" id="s7">
+    <h2 class="section-title"><span class="num">07</span> 시각화</h2>
+
+    <!-- 차트 1: 금리 경로 -->
+    <div class="chart-wrap">
+      <div class="chart-title">CHART 01</div>
+      <div class="chart-subtitle">Fed 기준금리 경로 시나리오 — 점도표 중간값 vs. J.P. Morgan 자체 전망 (2025–2028)</div>
+      <svg viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs>
+          <linearGradient id="dotGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="jpmGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e05c5c" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#e05c5c" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Y-axis labels: 2.5 to 5.0 -->
+        <!-- Grid -->
+        <!-- Y range: 2.5% to 5.0% mapped to y=270 to y=30, span=240px -->
+        <!-- y = 270 - (val - 2.5) / 2.5 * 240 -->
+
+        <!-- Grid lines -->
+        <line x1="80" y1="30"  x2="740" y2="30"  class="grid-line"/>
+        <line x1="80" y1="78"  x2="740" y2="78"  class="grid-line"/>
+        <line x1="80" y1="126" x2="740" y2="126" class="grid-line"/>
+        <line x1="80" y1="174" x2="740" y2="174" class="grid-line"/>
+        <line x1="80" y1="222" x2="740" y2="222" class="grid-line"/>
+        <line x1="80" y1="270" x2="740" y2="270" class="grid-line"/>
+
+        <!-- Y axis labels -->
+        <text x="70" y="34"  text-anchor="end" class="axis-label">5.0%</text>
+        <text x="70" y="82"  text-anchor="end" class="axis-label">4.5%</text>
+        <text x="70" y="130" text-anchor="end" class="axis-label">4.0%</text>
+        <text x="70" y="178" text-anchor="end" class="axis-label">3.5%</text>
+        <text x="70" y="226" text-anchor="end" class="axis-label">3.0%</text>
+        <text x="70" y="274" text-anchor="end" class="axis-label">2.5%</text>
+
+        <!-- X axis labels: 2025Q1, 2025Q3, 2026Q1, 2026Q3, 2027Q1, 2027Q3, 2028Q1 -->
+        <!-- x positions: 80, 185, 290(now), 395, 500, 605, 710 -->
+        <text x="130"  y="295" text-anchor="middle" class="axis-label">2025 H1</text>
+        <text x="240"  y="295" text-anchor="middle" class="axis-label">2025 H2</text>
+        <text x="350"  y="295" text-anchor="middle" class="axis-label">2026 H1</text>
+        <text x="460"  y="295" text-anchor="middle" class="axis-label">2026 H2</text>
+        <text x="570"  y="295" text-anchor="middle" class="axis-label">2027</text>
+        <text x="680"  y="295" text-anchor="middle" class="axis-label">2028</text>
+
+        <!-- "NOW" vertical marker (current meeting) at x=350 -->
+        <line x1="350" y1="30" x2="350" y2="270" stroke="#c9a84c" stroke-width="1" stroke-dasharray="3,4" opacity="0.5"/>
+        <text x="354" y="44" class="axis-label" fill="#c9a84c">현재</text>
+        <text x="354" y="56" class="axis-label" fill="#c9a84c">3.625%</text>
+
+        <!-- 
+          Dot plot median path (y values):
+          2025 H1: 4.375% → y=270-(1.875/2.5*240)=270-180=90
+          2025 H2: 3.875% → y=270-(1.375/2.5*240)=270-132=138  
+          Now(2026 H1): 3.625% → y=270-(1.125/2.5*240)=270-108=162
+          2026 H2 dot (1 cut): 3.375% → y=270-(0.875/2.5*240)=270-84=186
+          2027: 3.125% → y=270-(0.625/2.5*240)=270-60=210
+          2028: 3.0% → y=270-(0.5/2.5*240)=270-48=222
+        -->
+        <polyline points="130,90 240,138 350,162 460,186 570,210 680,222"
+          fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Area fill -->
+        <polygon points="130,90 240,138 350,162 460,186 570,210 680,222 680,270 130,270"
+          fill="url(#dotGrad)"/>
+
+        <!-- Dots on median line -->
+        <circle cx="130" cy="90" r="4" fill="#c9a84c"/>
+        <circle cx="240" cy="138" r="4" fill="#c9a84c"/>
+        <circle cx="350" cy="162" r="5" fill="#c9a84c" stroke="#0d0f14" stroke-width="2"/>
+        <circle cx="460" cy="186" r="4" fill="#c9a84c"/>
+        <circle cx="570" cy="210" r="4" fill="#c9a84c"/>
+        <circle cx="680" cy="222" r="4" fill="#c9a84c"/>
+
+        <!-- 
+          JPM "no cut" scenario:
+          Same as dot plot up to now, then stays flat
+          2026 H2: 3.625% → y=162
+          2027: 3.375% → y=186
+          2028: 3.125% → y=210
+        -->
+        <polyline points="130,90 240,138 350,162 460,162 570,186 680,210"
+          fill="none" stroke="#e05c5c" stroke-width="2" stroke-dasharray="5,3" stroke-linejoin="round"/>
+        <polygon points="130,90 240,138 350,162 460,162 570,186 680,210 680,270 130,270"
+          fill="url(#jpmGrad)"/>
+
+        <!-- Dots on JPM line -->
+        <circle cx="460" cy="162" r="4" fill="#e05c5c"/>
+        <circle cx="570" cy="186" r="4" fill="#e05c5c"/>
+        <circle cx="680" cy="210" r="4" fill="#e05c5c"/>
+
+        <!-- "no cut" alt scenario dashed (upper bound) -->
+        <!-- If median moves to no cut: 2026 H2 stays at 3.625% → y=162 -->
+        <polyline points="460,162 460,186"
+          fill="none" stroke="#c9a84c" stroke-width="1" stroke-dasharray="2,3" opacity="0.7"/>
+        <text x="465" y="176" class="axis-label" fill="#c9a84c" font-size="9">무인하 시나리오</text>
+
+        <!-- Legend -->
+        <line x1="90" y1="316" x2="120" y2="316" stroke="#c9a84c" stroke-width="2.5"/>
+        <circle cx="105" cy="316" r="3" fill="#c9a84c"/>
+        <text x="126" y="320" class="axis-label" fill="#8e94a8" font-size="11">점도표 중간값 (연내 1회 인하)</text>
+
+        <line x1="320" y1="316" x2="350" y2="316" stroke="#e05c5c" stroke-width="2" stroke-dasharray="5,3"/>
+        <circle cx="335" cy="316" r="3" fill="#e05c5c"/>
+        <text x="356" y="320" class="axis-label" fill="#8e94a8" font-size="11">J.P. Morgan 전망 (연내 무인하)</text>
+      </svg>
+      <div class="chart-note">※ 시각화는 J.P. Morgan 리서치 원문의 수치를 기반으로 재구성. 점도표 중간값은 JPM 예측치이며 실제 발표와 다를 수 있음.</div>
+    </div>
+
+    <!-- 차트 2: 경제 전망 수정 -->
+    <div class="chart-wrap">
+      <div class="chart-title">CHART 02</div>
+      <div class="chart-subtitle">2026년 경제 전망 주요 지표 — 12월 전망 대비 3월 예상 수정</div>
+      <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!--
+          Bar chart: 4 indicators, each with Dec vs Mar estimate
+          Indicators: Core PCE, GDP, Unemployment, PCE Headline
+        -->
+        <!-- Background sections -->
+        <rect x="80"  y="20" width="155" height="155" rx="6" fill="#161a24"/>
+        <rect x="250" y="20" width="155" height="155" rx="6" fill="#161a24"/>
+        <rect x="420" y="20" width="155" height="155" rx="6" fill="#161a24"/>
+        <rect x="590" y="20" width="155" height="155" rx="6" fill="#161a24"/>
+
+        <!-- Core PCE 
+             Dec: ~2.6% (assumed baseline), Mar est: ~2.95% 
+             bar height mapped: 0-4% range, 120px = 4%, so 1% = 30px
+             bar bottom = 155
+        -->
+        <!-- Dec bar -->
+        <rect x="110" y="77" width="35" height="98" rx="3" fill="#323848"/>
+        <!-- Mar bar -->
+        <rect x="155" y="66" width="35" height="109" rx="3" fill="#e05c5c" opacity="0.85"/>
+        <!-- Labels -->
+        <text x="157" y="16" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">CORE PCE</text>
+        <text x="157" y="28" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">인플레이션 (2026)</text>
+        <text x="127" y="72" text-anchor="middle" class="axis-label" fill="#555d72" font-size="10">2.6%</text>
+        <text x="172" y="61" text-anchor="middle" class="axis-label" fill="#e05c5c" font-size="10">~3%</text>
+        <text x="127" y="185" text-anchor="middle" class="axis-label" fill="#555d72" font-size="9">12월</text>
+        <text x="172" y="185" text-anchor="middle" class="axis-label" fill="#e05c5c" font-size="9">3월 추정</text>
+
+        <!-- GDP Growth
+             Dec: 2.3%, Mar est: 2.15%
+             2.3% → 120 - 2.3/4*120 = 120-69=51px top, height=69
+             2.15% → top=55, height=65
+        -->
+        <rect x="280" y="86" width="35" height="89" rx="3" fill="#5b8dee" opacity="0.75"/>
+        <rect x="325" y="90" width="35" height="85" rx="3" fill="#5b8dee" opacity="0.4"/>
+        <text x="327" y="16" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">GDP 성장률</text>
+        <text x="327" y="28" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">(2026 전망)</text>
+        <text x="297" y="81" text-anchor="middle" class="axis-label" fill="#5b8dee" font-size="10">2.3%</text>
+        <text x="342" y="86" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">~2.1%</text>
+        <text x="297" y="185" text-anchor="middle" class="axis-label" fill="#555d72" font-size="9">12월</text>
+        <text x="342" y="185" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">3월 추정</text>
+
+        <!-- Unemployment: 4.4% stable
+             4.4% → bar height = 4.4/6*120 ≈ 88px
+        -->
+        <rect x="450" y="87" width="35" height="88" rx="3" fill="#4caf82" opacity="0.7"/>
+        <rect x="495" y="87" width="35" height="88" rx="3" fill="#4caf82" opacity="0.35"/>
+        <text x="497" y="16" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">실업률</text>
+        <text x="497" y="28" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">(현재 수준)</text>
+        <text x="467" y="82" text-anchor="middle" class="axis-label" fill="#4caf82" font-size="10">4.4%</text>
+        <text x="512" y="82" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">4.4%</text>
+        <text x="467" y="185" text-anchor="middle" class="axis-label" fill="#555d72" font-size="9">12월</text>
+        <text x="512" y="185" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">3월 추정</text>
+
+        <!-- Longer-run GDP: 1.8% unchanged
+             1.8/4*120 = 54px height
+        -->
+        <rect x="620" y="121" width="35" height="54" rx="3" fill="#c9a84c" opacity="0.7"/>
+        <rect x="665" y="121" width="35" height="54" rx="3" fill="#c9a84c" opacity="0.35"/>
+        <text x="667" y="16" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">장기 GDP</text>
+        <text x="667" y="28" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">(longer-run)</text>
+        <text x="637" y="116" text-anchor="middle" class="axis-label" fill="#c9a84c" font-size="10">1.8%</text>
+        <text x="682" y="116" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="10">1.8%</text>
+        <text x="637" y="185" text-anchor="middle" class="axis-label" fill="#555d72" font-size="9">12월</text>
+        <text x="682" y="185" text-anchor="middle" class="axis-label" fill="#8e94a8" font-size="9">3월 추정</text>
+
+        <!-- baseline y=175 -->
+        <line x1="80" y1="175" x2="745" y2="175" stroke="#252a38" stroke-width="1"/>
+
+        <!-- Legend -->
+        <rect x="85" y="195" width="12" height="8" rx="1" fill="#555d72"/>
+        <text x="102" y="202" class="axis-label" fill="#555d72" font-size="10">12월 전망</text>
+        <rect x="175" y="195" width="12" height="8" rx="1" fill="#8e94a8" opacity="0.4"/>
+        <text x="192" y="202" class="axis-label" fill="#8e94a8" font-size="10">3월 수정 추정</text>
+      </svg>
+      <div class="chart-note">※ 12월 Core PCE 전망치는 J.P. Morgan 리포트의 맥락적 수치를 바탕으로 추정. 실제 발표치와 차이가 있을 수 있음.</div>
+    </div>
+
+    <!-- 차트 3: 도트플롯 위원 분포 -->
+    <div class="chart-wrap">
+      <div class="chart-title">CHART 03</div>
+      <div class="chart-subtitle">2026년 말 점도표 분포 시나리오 — 12월 기준 vs. 3월 예상 이동</div>
+      <svg viewBox="0 0 780 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!--
+          Simulated dot plots: December vs March
+          December: 
+            No cut (3.5-3.75%): ~15 dots  
+            1 cut (3.25-3.5%): 4 dots
+          March expected: 
+            Potentially 3 of the 4 "1 cut" dots move up to "no cut"
+            JPM base: 1 cut remains median (~11 no cut, ~4 or so 1 cut, a few below)
+        -->
+
+        <!-- Left: December -->
+        <text x="195" y="18" text-anchor="middle" fill="#8e94a8" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="0.05em">12월 FOMC — 점도표</text>
+
+        <!-- Row labels -->
+        <text x="10" y="58" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9">3.75%</text>
+        <text x="10" y="90" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9">3.50%</text>
+        <text x="10" y="122" fill="#c9a84c" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="bold">3.25%</text>
+        <text x="10" y="154" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9">3.00%</text>
+        <text x="10" y="186" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9">2.75%</text>
+
+        <!-- Grid lines (left panel) -->
+        <line x1="55" y1="50" x2="355" y2="50"  stroke="#1e2230" stroke-width="1"/>
+        <line x1="55" y1="82" x2="355" y2="82"  stroke="#1e2230" stroke-width="1"/>
+        <line x1="55" y1="114" x2="355" y2="114" stroke="#252a38" stroke-width="1.5"/>
+        <line x1="55" y1="146" x2="355" y2="146" stroke="#1e2230" stroke-width="1"/>
+        <line x1="55" y1="178" x2="355" y2="178" stroke="#1e2230" stroke-width="1"/>
+
+        <!-- December dots: 3.5-3.75% range = y=66 area: 15 dots -->
+        <!-- Using y=66 for "no cut" (3.5-3.75%), y=98 for "1 cut" (3.25-3.5%) -->
+        <!-- 15 dots across y=66 -->
+        <circle cx="65"  cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="85"  cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="105" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="125" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="145" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="165" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="185" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="205" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="225" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="245" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="265" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="285" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="305" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="325" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="345" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+
+        <!-- 4 dots at y=98 (1 cut, 3.25-3.5%) -->
+        <circle cx="65"  cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+        <circle cx="85"  cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+        <circle cx="105" cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+        <circle cx="125" cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+
+        <!-- 2 dots at 3.0% range (y=130) -->
+        <circle cx="65"  cy="130" r="6" fill="#323848" stroke="#3e4860" stroke-width="1" opacity="0.6"/>
+        <circle cx="85"  cy="130" r="6" fill="#323848" stroke="#3e4860" stroke-width="1" opacity="0.6"/>
+
+        <!-- Median indicator Dec: y=98 area (median is between no-cut and 1-cut) -->
+        <line x1="55" y1="98" x2="355" y2="98" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+        <text x="357" y="102" fill="#c9a84c" font-family="'IBM Plex Mono', monospace" font-size="9">중간값</text>
+
+        <!-- Count labels -->
+        <text x="195" y="212" text-anchor="middle" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="10">무인하(15) / 1회인하(4) / 2회이상(2)</text>
+
+        <!-- Divider -->
+        <line x1="390" y1="20" x2="390" y2="210" stroke="#2a2f3f" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- Right: March expected -->
+        <text x="585" y="18" text-anchor="middle" fill="#8e94a8" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="0.05em">3월 예상 — JPM 시나리오</text>
+
+        <!-- Grid lines (right panel) -->
+        <line x1="420" y1="50"  x2="750" y2="50"  stroke="#1e2230" stroke-width="1"/>
+        <line x1="420" y1="82"  x2="750" y2="82"  stroke="#1e2230" stroke-width="1"/>
+        <line x1="420" y1="114" x2="750" y2="114" stroke="#252a38" stroke-width="1.5"/>
+        <line x1="420" y1="146" x2="750" y2="146" stroke="#1e2230" stroke-width="1"/>
+        <line x1="420" y1="178" x2="750" y2="178" stroke="#1e2230" stroke-width="1"/>
+
+        <!-- Row labels (right) -->
+        <text x="405" y="58"  fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="end">3.75%</text>
+        <text x="405" y="90"  fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="end">3.50%</text>
+        <text x="405" y="122" fill="#c9a84c" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="end" font-weight="bold">3.25%</text>
+        <text x="405" y="154" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="end">3.00%</text>
+        <text x="405" y="186" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="9" text-anchor="end">2.75%</text>
+
+        <!-- March: 16-17 no cut dots at y=66 (some moved from 1-cut group, but median still 1 cut by JPM base) -->
+        <!-- JPM base: 15 no-cut + 1 new mover = 16, but 3 still at 1-cut -->
+        <circle cx="430" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="450" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="470" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="490" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="510" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="530" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="550" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="570" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="590" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="610" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="630" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="650" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="670" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="690" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <circle cx="710" cy="66" r="6" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <!-- 1 moved up from 1-cut group (dashed border indicates "mover") -->
+        <circle cx="730" cy="66" r="6" fill="none" stroke="#e05c5c" stroke-width="1.5" stroke-dasharray="2,1.5"/>
+
+        <!-- 3 dots remaining at 1-cut (JPM base: median still 1-cut) -->
+        <circle cx="430" cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+        <circle cx="450" cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+        <circle cx="470" cy="98" r="6" fill="#c9a84c" stroke="#8a6f2e" stroke-width="1"/>
+
+        <!-- 2 dots at 3.0% -->
+        <circle cx="430" cy="130" r="6" fill="#323848" stroke="#3e4860" stroke-width="1" opacity="0.6"/>
+        <circle cx="450" cy="130" r="6" fill="#323848" stroke="#3e4860" stroke-width="1" opacity="0.6"/>
+
+        <!-- Median line (still 1-cut) -->
+        <line x1="420" y1="98" x2="750" y2="98" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+        <text x="752" y="102" fill="#c9a84c" font-family="'IBM Plex Mono', monospace" font-size="9">중간값</text>
+
+        <!-- Count labels -->
+        <text x="585" y="212" text-anchor="middle" fill="#555d72" font-family="'IBM Plex Mono', monospace" font-size="10">무인하(16) / 1회인하(3) / 2회이상(2)</text>
+
+        <!-- Legend -->
+        <circle cx="100" cy="228" r="5" fill="#c9a84c"/>
+        <text x="110" y="232" fill="#8e94a8" font-family="'IBM Plex Mono', monospace" font-size="10">1회 인하 선호</text>
+        <circle cx="230" cy="228" r="5" fill="#323848" stroke="#455060" stroke-width="1"/>
+        <text x="240" y="232" fill="#8e94a8" font-family="'IBM Plex Mono', monospace" font-size="10">무인하(동결) 선호</text>
+        <circle cx="375" cy="228" r="5" fill="none" stroke="#e05c5c" stroke-width="1.5" stroke-dasharray="2,1.5"/>
+        <text x="385" y="232" fill="#8e94a8" font-family="'IBM Plex Mono', monospace" font-size="10">이탈 이동 예상 (1명)</text>
+      </svg>
+      <div class="chart-note">※ 점도표 분포는 J.P. Morgan 리포트 분석을 바탕으로 재구성한 추정치입니다. 실제 위원 수 및 분포는 발표 후 확인 필요.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       08 전략적 시사점 & 실무 포인트
+  ══════════════════════════════════ -->
+  <section class="section" id="s8">
+    <h2 class="section-title"><span class="num">08</span> 전략적 시사점 & 실무 포인트</h2>
+
+    <p class="body-text">
+      이번 FOMC를 둘러싼 전략적 핵심은 <strong>점도표 중간값이 어디에 위치하느냐에 따라 연내 금리 경로 기대가 재편된다는 것</strong>이다. 현재 시장은 연내 약 1회 인하를 프라이싱하고 있다. 만약 점도표 중간값이 무인하로 이동한다면, 단기 금리의 상방 조정과 달러 강세 압력이 나타날 것이다. 반대로 1회 인하 기조가 유지된다면 현재 커브 포지셔닝이 상당 부분 지지된다.
+    </p>
+
+    <div class="strategy-grid">
+      <div class="strat-card">
+        <div class="strat-icon">📍</div>
+        <div class="strat-head">금리/채권 포지셔닝</div>
+        <div class="strat-body">점도표 무인하 전환 리스크가 50% 미만이지만 무시할 수 없는 수준이다. 프론트엔드 금리(2년물 UST)는 회의 전 변동성이 확대될 수 있으며, '무인하' 결과물에 대한 헤지 수요가 일정 부분 유지될 것으로 보인다.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">🌍</div>
+        <div class="strat-head">중동 리스크 프리미엄</div>
+        <div class="strat-body">에너지 가격 경로의 불확실성이 공식 문서에 처음 명기될 예정이다. 이는 헤드라인 인플레이션이 일시적으로 3%를 상회할 경우 연준이 이를 '일시적'으로 해석할 수 있는지에 대한 커뮤니케이션 위험을 내재하고 있다.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">🏛️</div>
+        <div class="strat-head">리더십 리스크</div>
+        <div class="strat-body">Kevin Warsh 지명은 중기적으로 Fed의 통화정책 프레임워크에 불확실성을 추가한다. 시장은 기자회견에서 Powell이 Warsh와의 정책 철학 차이에 대해 어떤 신호를 주는지(혹은 회피하는지)를 유심히 볼 것이다.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">📊</div>
+        <div class="strat-head">성장 스토리의 재평가</div>
+        <div class="strat-body">GDP가 소폭 하향 조정되더라도 장기 잠재성장률에 대한 연준 내 낙관론이 커지고 있다는 점은 긍정적 신호다. 공급 측 개선(AI, 생산성)에 대한 기대가 정식 전망에 반영되기 시작할 경우 중립금리 상향이 논의될 수 있다.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">🇰🇷</div>
+        <div class="strat-head">한국 시장 함의</div>
+        <div class="strat-body">Fed 동결 장기화는 한미 금리차 축소 속도를 늦춘다. 원/달러 환율에는 중립~소폭 강달러 요인으로 작용한다. 한국은행의 추가 인하 여력도 연준의 경로에 연동되므로, 3월 점도표가 통화정책 완화 공간의 국내 기대치 조정을 촉발할 수 있다.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-icon">⏱️</div>
+        <div class="strat-head">실무 주의 포인트</div>
+        <div class="strat-body">회의 당일 점도표 공개 직후 FX·채권 변동성이 집중된다. J.P. Morgan 자체 전망(연내 무인하)이 점도표 중간값(연내 1회 인하)과 다르다는 점을 유념해야 한다. 이 격차 자체가 하반기 시장 변동성의 씨앗이 될 수 있다.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="sub-title">핵심 모니터링 변수</h3>
+    <p class="body-text">
+      이번 FOMC 이후 시장이 주목해야 할 데이터 포인트는 다음과 같다. 첫째, <strong>에너지 가격 및 중동 정세</strong>: PCE 인플레이션 경로를 직접적으로 결정한다. 둘째, <strong>3–4월 Core PCE 및 CPI 발표</strong>: 3% 수준에서의 고착화 여부가 다음 회의(5월 FOMC)의 점도표 기대를 좌우한다. 셋째, <strong>인플레이션 기대 지표(Michigan, 5년5년 BEI)</strong>: Powell이 기자회견에서 조건부 일시적 분류의 핵심 전제 조건으로 명시할 항목이다. 넷째, <strong>Kevin Warsh의 인준 청문회 발언</strong>: 새 의장의 통화정책 철학이 보다 구체화될 경우 중기 금리 기대에 영향을 줄 수 있다.
+    </p>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="report-footer">
+    <p><strong>원문 출처:</strong> J.P. Morgan, North America Economic Research, Michael Feroli, 13 March 2026. "FOMC preview."</p>
+    <p style="margin-top:6px;">본 리포트는 J.P. Morgan 원문을 바탕으로 한국어 분석 리포트로 재구성한 것입니다. 투자 권고 또는 투자 조언이 아닙니다. 모든 전망 수치는 J.P. Morgan의 견해이며 실제 결과와 다를 수 있습니다.</p>
+  </footer>
+
+</div>
+</body>
+</html>
