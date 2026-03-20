@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>미국 국채 시장 분석 리포트 | J.P. Morgan | 2026.03.19</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0c10;
+    --bg2: #10141c;
+    --bg3: #161b26;
+    --border: #1f2940;
+    --border2: #2a3550;
+    --text: #c8d4e8;
+    --text-dim: #6b7a99;
+    --text-muted: #3d4d6b;
+    --accent: #4a90d9;
+    --accent2: #2a5fa8;
+    --gold: #c8a84b;
+    --gold2: #8a6b20;
+    --green: #3dba8a;
+    --red: #e05555;
+    --red2: #a83030;
+    --yellow: #d4a840;
+    --white: #e8edf5;
+    --max-w: 920px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    border-bottom: 1px solid var(--border);
+    padding: 52px 0 36px;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .header-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-label::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  .report-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .report-subtitle {
+    font-size: 17px;
+    color: var(--text-dim);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .report-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .meta-item span { color: var(--text); }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 60px;
+  }
+  .section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  p {
+    color: var(--text);
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  strong { color: var(--white); font-weight: 600; }
+  em { color: var(--gold); font-style: normal; }
+
+  /* ── SUMMARY BOX ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .summary-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+  }
+  .summary-card.warn::before { background: var(--red); }
+  .summary-card.pos::before  { background: var(--green); }
+  .summary-card.gold::before { background: var(--gold); }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .card-value.up   { color: var(--red); }
+  .card-value.down { color: var(--green); }
+  .card-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    font-weight: 300;
+  }
+
+  /* ── YIELD TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+  }
+  thead tr {
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border2);
+  }
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  th:first-child { text-align: left; }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: var(--bg3); }
+  tbody tr:last-child { border-bottom: none; }
+  td {
+    padding: 9px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-align: right;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  td:first-child { text-align: left; color: var(--white); font-weight: 500; }
+  .up-val   { color: var(--red); }
+  .down-val { color: var(--green); }
+  .pctl-hi  { color: var(--yellow); }
+  .tr-group td { border-top: 1px solid var(--border2); }
+  .tr-highlight { background: rgba(74,144,217,0.06); }
+
+  /* ── SVG CHARTS ── */
+  .chart-container {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .chart-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  svg text { font-family: 'JetBrains Mono', monospace; }
+
+  /* ── TWO-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* ── POSITIONING GRID ── */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .pos-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .pos-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+  .z-bar-track {
+    height: 6px;
+    background: var(--bg3);
+    border-radius: 3px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .z-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+  }
+  .z-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+  }
+  .z-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ── STRATEGY BOX ── */
+  .strategy-box {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .strategy-box::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%; height: 1px;
+    background: linear-gradient(to left, transparent, var(--accent));
+  }
+  .strategy-box h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .strategy-box p { margin-bottom: 0; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: rgba(74,144,217,0.08);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .callout.warn  {
+    background: rgba(224,85,85,0.08);
+    border-color: var(--red);
+  }
+  .callout.gold  {
+    background: rgba(200,168,75,0.08);
+    border-color: var(--gold);
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── DIVIDER ── */
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  /* ── LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-line {
+    width: 18px; height: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── YIELD SPARKLINE VISUAL ── */
+  .yield-level-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .ylb-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    width: 36px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .ylb-track {
+    flex: 1;
+    height: 8px;
+    background: var(--bg3);
+    border-radius: 4px;
+    position: relative;
+  }
+  .ylb-fill {
+    height: 100%;
+    border-radius: 4px;
+    position: absolute;
+    top: 0; left: 0;
+  }
+  .ylb-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--white);
+    width: 46px;
+    flex-shrink: 0;
+    text-align: right;
+    font-weight: 500;
+  }
+  .ylb-chg {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    width: 54px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ══ HEADER ══ -->
+  <header class="report-header">
+    <div class="header-label">J.P. Morgan Global Markets Strategy &nbsp;·&nbsp; Fixed Income</div>
+    <h1 class="report-title">미국 국채 시장 일일 분석</h1>
+    <p class="report-subtitle">달러 사망설은 과장되었다 — 베어 플래트닝의 하루, 그리고 반전</p>
+    <div class="report-meta">
+      <div class="meta-item">날짜 <span>2026년 3월 19일</span></div>
+      <div class="meta-item">작성 <span>Jay Barry / Jason Hunter</span></div>
+      <div class="meta-item">출처 <span>J.P. Morgan US Treasury Market Daily</span></div>
+    </div>
+  </header>
+
+  <!-- ══ SECTION 1: 핵심 요약 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">01</span> 핵심 요약</h2>
+
+    <div class="summary-grid">
+      <div class="summary-card warn">
+        <div class="card-label">2년물 금리 (장중 고점)</div>
+        <div class="card-value up">3.90%+</div>
+        <div class="card-desc">BoE·ECB 매파 조치 후 일시 돌파, 종가 3.83%로 회귀</div>
+      </div>
+      <div class="summary-card warn">
+        <div class="card-label">30년물 금리</div>
+        <div class="card-value up">4.85%</div>
+        <div class="card-desc">일간 -2.8bp, 4.895% 추세선 지지 유효</div>
+      </div>
+      <div class="summary-card pos">
+        <div class="card-label">2s/10s 스프레드</div>
+        <div class="card-value down">45.0bp</div>
+        <div class="card-desc">3개월 최저 (3m 평균 62.8bp), 베어 플래트닝 심화</div>
+      </div>
+      <div class="summary-card gold">
+        <div class="card-label">해외 공식기관 국채 순매수</div>
+        <div class="card-value" style="color:var(--gold)">$510억</div>
+        <div class="card-desc">2013년 이후 역대 2위 — 1월 TIC 데이터</div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>오늘의 핵심 서사:</strong> 유럽 중앙은행들의 연속 매파 충격으로 채권 금리가 상승했지만, 장 후반 네타냐후 이스라엘 총리의 "이란 우라늄 농축 시설 파괴" 발언이 지정학적 리스크 프리미엄을 단번에 해소하며 금리가 되돌아왔다. 2년물이 장중 18bp의 진폭을 기록한 극적인 하루.
+    </div>
+
+    <p>이날의 시장 흐름은 두 개의 독립된 충격파가 서로 상쇄한 결과물이다. 오전장에는 BoE와 ECB의 연이은 매파 결정이 단기물을 강하게 압박했다. 오후에는 중동 지정학 리스크 해소 기대가 유가를 끌어내리며 선물 시장의 Fed 동결 전망을 완화시켰다. 두 이벤트는 표면적으로는 상이하지만, 모두 글로벌 인플레이션 경로와 연준의 정책 여력에 연결된다는 점에서 깊이 얽혀 있다.</p>
+  </section>
+
+  <!-- ══ SECTION 2: 수익률 현황 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">02</span> 시장 레벨 및 주요 변화</h2>
+
+    <p>현재의 수익률 곡선은 <strong>베어 플래트닝(bear flattening)</strong> 상태다. 단기물이 빠르게 상승하는 반면 장기물은 상대적으로 덜 움직이는 구도로, 이는 시장이 연준의 금리 인하 기대를 축소하면서 단기 조달 비용 상승을 반영하는 전형적인 패턴이다. YTD 기준 2년물은 36.3bp나 상승한 반면 30년물은 불과 2.2bp 오르는 데 그쳤다는 사실이 이 구도를 압축적으로 보여준다.</p>
+
+    <!-- Yield level bars -->
+    <div class="chart-container">
+      <div class="chart-title">온더런 국채 수익률 수준 및 당일 변화</div>
+      <div style="margin-bottom:6px;">
+        <div class="yield-level-bar">
+          <div class="ylb-label">2Y</div>
+          <div class="ylb-track"><div class="ylb-fill" style="width:52%;background:linear-gradient(90deg,#2a5fa8,#e05555)"></div></div>
+          <div class="ylb-val">3.83%</div>
+          <div class="ylb-chg" style="color:var(--red)">+9.0bp</div>
+        </div>
+        <div class="yield-level-bar">
+          <div class="ylb-label">5Y</div>
+          <div class="ylb-track"><div class="ylb-fill" style="width:60%;background:linear-gradient(90deg,#2a5fa8,#e05555)"></div></div>
+          <div class="ylb-val">3.92%</div>
+          <div class="ylb-chg" style="color:var(--red)">+6.1bp</div>
+        </div>
+        <div class="yield-level-bar">
+          <div class="ylb-label">10Y</div>
+          <div class="ylb-track"><div class="ylb-fill" style="width:80%;background:linear-gradient(90deg,#4a90d9,#c8a84b)"></div></div>
+          <div class="ylb-val">4.28%</div>
+          <div class="ylb-chg" style="color:var(--red)">+2.6bp</div>
+        </div>
+        <div class="yield-level-bar">
+          <div class="ylb-label">30Y</div>
+          <div class="ylb-track"><div class="ylb-fill" style="width:95%;background:linear-gradient(90deg,#4a90d9,#c8a84b)"></div></div>
+          <div class="ylb-val">4.85%</div>
+          <div class="ylb-chg" style="color:var(--green)">-2.8bp</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yield table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>구간</th>
+            <th>종가(%)</th>
+            <th>당일(bp)</th>
+            <th>주간(bp)</th>
+            <th>연초대비(bp)</th>
+            <th>3m 평균</th>
+            <th>3m 저점</th>
+            <th>3m 고점</th>
+            <th>3m 백분위</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-group">
+            <td>4주 T-Bill</td><td>3.67</td><td class="down-val">-1.8</td><td class="down-val">-2.4</td><td class="up-val">+10.3</td><td>3.66</td><td>3.54</td><td>3.70</td><td>78%</td>
+          </tr>
+          <tr>
+            <td>13주 T-Bill</td><td>3.70</td><td>0.0</td><td class="up-val">+1.1</td><td class="up-val">+6.3</td><td>3.70</td><td>3.54</td><td>3.70</td><td class="pctl-hi">100%</td>
+          </tr>
+          <tr>
+            <td>26주 T-Bill</td><td>3.72</td><td class="up-val">+2.6</td><td class="up-val">+5.9</td><td class="up-val">+11.1</td><td>3.62</td><td>3.55</td><td>3.72</td><td class="pctl-hi">100%</td>
+          </tr>
+          <tr class="tr-group tr-highlight">
+            <td>2년물</td><td>3.83</td><td class="up-val">+9.0</td><td class="up-val">+9.9</td><td class="up-val">+36.3</td><td>3.53</td><td>3.38</td><td>3.83</td><td class="pctl-hi">100%</td>
+          </tr>
+          <tr>
+            <td>5년물</td><td>3.92</td><td class="up-val">+6.1</td><td class="up-val">+4.7</td><td class="up-val">+21.0</td><td>3.74</td><td>3.51</td><td>3.92</td><td class="pctl-hi">100%</td>
+          </tr>
+          <tr class="tr-highlight">
+            <td>10년물</td><td>4.28</td><td class="up-val">+2.6</td><td class="down-val">-0.2</td><td class="up-val">+12.9</td><td>4.16</td><td>3.96</td><td>4.29</td><td>96%</td>
+          </tr>
+          <tr class="tr-highlight">
+            <td>30년물</td><td>4.85</td><td class="down-val">-2.8</td><td class="down-val">-5.5</td><td class="up-val">+2.2</td><td>4.80</td><td>4.63</td><td>4.92</td><td>76%</td>
+          </tr>
+          <!-- Curve spreads -->
+          <tr class="tr-group">
+            <td style="color:var(--text-dim);font-size:10px;letter-spacing:0.1em">2s/5s (bp)</td><td>8.8</td><td class="down-val">-2.9</td><td class="down-val">-5.2</td><td class="down-val">-15.4</td><td>20.1</td><td>8.8</td><td>27.4</td><td style="color:var(--green)">0%</td>
+          </tr>
+          <tr class="tr-highlight">
+            <td style="color:var(--text-dim);font-size:10px;letter-spacing:0.1em">2s/10s (bp)</td><td>45.0</td><td class="down-val">-6.5</td><td class="down-val">-10.1</td><td class="down-val">-23.4</td><td>62.8</td><td>45.0</td><td>72.7</td><td style="color:var(--green)">0%</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-dim);font-size:10px;letter-spacing:0.1em">10s/30s (bp)</td><td>57.1</td><td class="down-val">-5.3</td><td class="down-val">-5.3</td><td class="down-val">-10.7</td><td>64.2</td><td>57.1</td><td>69.1</td><td style="color:var(--green)">0%</td>
+          </tr>
+          <!-- TIPS -->
+          <tr class="tr-group">
+            <td style="color:var(--text-dim);font-size:10px;letter-spacing:0.1em">5Y BEI (bp)</td><td>271.2</td><td class="down-val">-0.5</td><td class="up-val">+5.2</td><td class="up-val">+43.9</td><td>246.1</td><td>224.7</td><td>271.7</td><td class="pctl-hi">99%</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-dim);font-size:10px;letter-spacing:0.1em">10Y BEI (bp)</td><td>239.8</td><td class="down-val">-1.4</td><td class="up-val">+2.2</td><td class="up-val">+15.1</td><td>230.8</td><td>222.4</td><td>241.2</td><td>93%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:12px;color:var(--text-dim);margin-top:8px;">출처: J.P. Morgan. 백분위는 최근 3개월 기준 현재 수준의 상대 위치.</p>
+
+    <hr class="rule">
+
+    <p>특히 주목할 점은 모든 커브 스프레드가 <strong>3개월 최저 백분위(0%)</strong>를 기록하고 있다는 사실이다. 2s/10s가 45bp에 머문다는 것은 단기물이 압도적으로 비싸게(금리가 높게) 팔리고 있음을 뜻한다. 이는 시장이 연준의 정책 경로를 매우 보수적으로 보고 있다는 신호다. 반면 물가연동채(TIPS) 손익분기점(BEI)은 5년물 기준 연초대비 43.9bp나 급등해 99 백분위까지 치솟았는데, 이는 에너지 가격 상승과 유럽 인플레이션 재연이 시장의 미국 인플레이션 기대마저 끌어올리고 있음을 반영한다.</p>
+  </section>
+
+  <!-- ══ SECTION 3: 중앙은행 및 경기 데이터 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">03</span> 중앙은행 이벤트 및 매크로 데이터 분석</h2>
+
+    <div class="two-col">
+      <div class="strategy-box">
+        <h4>🇬🇧 영란은행 (BoE) — 매파적 동결</h4>
+        <p>BoE는 금리를 동결했지만 성명서를 전면 재작성했다. 핵심 메시지는 "에너지 가격 상승이 지속될수록 임금·가격 설정에서 2차 파급 효과로 인한 국내 인플레이션 위험이 커진다"는 것이다. J.P. Morgan은 이를 근거로 <strong>4월과 7월 각각 25bp 인상</strong>을 전망한다. 중동 지정학 리스크가 해소되기 전까지 에너지 가격은 BoE의 정책 경로에 핵심 변수로 남는다.</p>
+      </div>
+      <div class="strategy-box">
+        <h4>🇪🇺 유럽중앙은행 (ECB) — 매파 전환</h4>
+        <p>ECB도 금리를 동결했지만 2028년까지 코어 인플레이션이 2%를 지속적으로 상회할 것으로 전망하며 매파적 스탠스를 명확히 했다. J.P. Morgan은 <strong>4월과 7월 25bp씩 인상</strong>을 예상하며, 이후 2027년 부분 되돌림을 전망한다. 유럽 통화 긴축의 의외의 재가속은 달러화 강세 논거를 뒷받침하며, 이것이 이날 리포트 제목 "달러 사망설은 과장"의 직접적 배경이다.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>국내 경기 데이터도 긴축 방향을 지지:</strong> 신규 실업수당 청구 건수가 8k 감소한 205k로 1월 이후 최저치를 기록(컨센서스 215k). 필라델피아 연준 제조업 지수는 16.3→18.1로 상승(컨센서스 8.0를 크게 상회). ISM 가중 복합 지수는 50.1→55.2로 이번 사이클 상단권 진입. 노동시장과 제조업이 동시에 예상을 뛰어넘으며 연준의 금리 인하 여지를 추가로 제약했다.
+    </div>
+
+    <p>흥미로운 것은 장 후반의 급반전이다. 이스라엘 PM 네타냐후의 "이란 우라늄 농축 능력 파괴" 선언은 유가를 끌어내렸고, OIS 선물 시장에서 잠시 1~2년 연준 동결을 가격에 반영했던 전선을 빠르게 풀어냈다. 이 과정에서 2년물은 장중 18bp의 진폭을 경험했다. 중동 정전이 현실화하면 원유 공급 경로 정상화로 에너지 인플레이션이 꺾일 수 있고, 이는 역설적으로 BoE·ECB의 추가 인상 논거도 약화시킬 수 있다는 점에서 지정학과 통화정책이 복잡하게 얽혀 있음을 보여준다.</p>
+  </section>
+
+  <!-- ══ SECTION 4: 수급 분석 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">04</span> 국채 수요·수급 분석</h2>
+
+    <p>Fed의 4Q25 금융계정(Z.1) 보고서는 국채 시장 수급의 구조적 변화를 선명하게 보여준다. 한마디로 요약하면: <strong>MMF와 딜러가 주도하고, 외국인은 주춤하고, 보험·연기금은 후퇴</strong>했다.</p>
+
+    <!-- Demand chart (SVG bar chart) -->
+    <div class="chart-container">
+      <div class="chart-title">투자자 유형별 분기 국채 순매수 ($bn) — 4Q24~4Q25</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#4a90d9"></div>4Q24</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3dba8a"></div>3Q25</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#c8a84b"></div>4Q25</div>
+      </div>
+      <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!-- grid lines -->
+        <line x1="140" y1="20" x2="850" y2="20" stroke="#1f2940" stroke-width="1"/>
+        <line x1="140" y1="80" x2="850" y2="80" stroke="#1f2940" stroke-width="1"/>
+        <line x1="140" y1="140" x2="850" y2="140" stroke="#1f2940" stroke-width="1"/>
+        <line x1="140" y1="200" x2="850" y2="200" stroke="#1f2940" stroke-width="1"/>
+        <line x1="140" y1="260" x2="850" y2="260" stroke="#2a3550" stroke-width="1"/>
+        <!-- y-axis labels (0 line at y=260, scale: 1bp=0.4px, so 600 → y=260-240=20) -->
+        <text x="132" y="24"  text-anchor="end" fill="#6b7a99" font-size="10">600</text>
+        <text x="132" y="84"  text-anchor="end" fill="#6b7a99" font-size="10">450</text>
+        <text x="132" y="144" text-anchor="end" fill="#6b7a99" font-size="10">300</text>
+        <text x="132" y="204" text-anchor="end" fill="#6b7a99" font-size="10">150</text>
+        <text x="132" y="264" text-anchor="end" fill="#6b7a99" font-size="10">0</text>
+        <!-- negative line -->
+        <line x1="140" y1="280" x2="850" y2="280" stroke="#1f2940" stroke-width="1"/>
+        <text x="132" y="284" text-anchor="end" fill="#6b7a99" font-size="10">-50</text>
+
+        <!-- MMF: 4Q24=280, 3Q25=557, 4Q25=229 -->
+        <!-- scale: y = 260 - val*0.40 -->
+        <!-- MMF group x=165 -->
+        <rect x="158" y="148" width="18" height="112" fill="#4a90d9" opacity="0.85" rx="2"/>
+        <rect x="178" y="37"  width="18" height="223" fill="#3dba8a" opacity="0.85" rx="2"/>
+        <rect x="198" y="168" width="18" height="92"  fill="#c8a84b" opacity="0.85" rx="2"/>
+        <text x="188" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">MMF</text>
+
+        <!-- Broker: 4Q24=78, 3Q25=-25, 4Q25=50 -->
+        <rect x="248" y="229" width="18" height="31"  fill="#4a90d9" opacity="0.85" rx="2"/>
+        <rect x="268" y="260" width="18" height="10"  fill="#e05555" opacity="0.85" rx="2"/>
+        <rect x="288" y="240" width="18" height="20"  fill="#c8a84b" opacity="0.85" rx="2"/>
+        <text x="278" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">딜러</text>
+
+        <!-- Mutual: 4Q24=51, 3Q25=85, 4Q25=38 -->
+        <rect x="338" y="239.6" width="18" height="20.4" fill="#4a90d9" opacity="0.85" rx="2"/>
+        <rect x="358" y="226"   width="18" height="34"   fill="#3dba8a" opacity="0.85" rx="2"/>
+        <rect x="378" y="244.8" width="18" height="15.2" fill="#c8a84b" opacity="0.85" rx="2"/>
+        <text x="368" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">뮤추얼펀드</text>
+
+        <!-- Foreign: 4Q24=67, 3Q25=127, 4Q25=28 -->
+        <rect x="428" y="233.2" width="18" height="26.8" fill="#4a90d9" opacity="0.85" rx="2"/>
+        <rect x="448" y="209.2" width="18" height="50.8" fill="#3dba8a" opacity="0.85" rx="2"/>
+        <rect x="468" y="248.8" width="18" height="11.2" fill="#c8a84b" opacity="0.85" rx="2"/>
+        <text x="458" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">해외투자자</text>
+
+        <!-- Fed: 4Q24=-79, 3Q25=-16, 4Q25=28 -->
+        <rect x="518" y="260" width="18" height="31.6" fill="#4a90d9" opacity="0.35" rx="2"/>
+        <rect x="538" y="260" width="18" height="6.4"  fill="#3dba8a" opacity="0.35" rx="2"/>
+        <rect x="558" y="248.8" width="18" height="11.2" fill="#c8a84b" opacity="0.85" rx="2"/>
+        <text x="548" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">Fed</text>
+
+        <!-- Insurance: 4Q24=-55, 3Q25=64, 4Q25=-19 -->
+        <rect x="608" y="260" width="18" height="22"  fill="#4a90d9" opacity="0.35" rx="2"/>
+        <rect x="628" y="234.4" width="18" height="25.6" fill="#3dba8a" opacity="0.85" rx="2"/>
+        <rect x="648" y="260" width="18" height="7.6"  fill="#e05555" opacity="0.85" rx="2"/>
+        <text x="638" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">보험사</text>
+
+        <!-- Pension: 4Q24=6, 3Q25=56, 4Q25=19 -->
+        <rect x="698" y="257.6" width="18" height="2.4"  fill="#4a90d9" opacity="0.85" rx="2"/>
+        <rect x="718" y="237.6" width="18" height="22.4" fill="#3dba8a" opacity="0.85" rx="2"/>
+        <rect x="738" y="252.4" width="18" height="7.6"  fill="#c8a84b" opacity="0.85" rx="2"/>
+        <text x="728" y="305" text-anchor="middle" fill="#6b7a99" font-size="9">연기금</text>
+
+        <!-- axis line -->
+        <line x1="140" y1="260" x2="850" y2="260" stroke="#3d4d6b" stroke-width="1.5"/>
+        <line x1="140" y1="20"  x2="140" y2="290" stroke="#3d4d6b" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <p>MMF는 4Q25에 2,290억 달러를 순매수했다. 3Q25의 5,570억 달러에서 크게 줄어든 수치지만, 이는 3Q25에 부채한도 위기 해소 후 T-Bill 발행이 폭발적으로 늘어난 데 따른 기저효과다. AUM 규모는 두 분기 모두 비슷하게 증가했기 때문에, 오히려 MMF의 순매수 흡수율은 4Q25에 더 높았다고 해석해야 한다. J.P. Morgan은 2026년 연간 MMF 수요가 전년 연율 3,920억 달러에서 3,750억 달러로 소폭 감소할 것으로 전망한다.</p>
+
+    <p>딜러(브로커·딜러)는 4Q25에 500억 달러를 순매수했으며, 이는 대부분 T-Bill에 집중됐다. 2026년 들어 T-Bill 포지션은 점차 줄어드는 반면 장기물 재고는 계속 늘고 있다. 이는 미국 국채 선물(US·WN 계약) 딜러 넷숏 포지션 증가와 맞물린 <strong>베이시스 포지셔닝</strong>의 증거로, 연기금 수요 둔화가 딜러 재고 압박으로 연결되는 구조다. 긍정적인 점은 딜러 재고 증가 속도가 국채 시장 자체의 성장 속도를 앞지르고 있다는 점으로, 규제 완화 기조가 이어질 경우 딜러 중개 능력이 추가로 확장될 여지가 있다.</p>
+
+    <p>Fed의 변화도 주목할 만하다. 2022년 양적긴축(QT) 종료 이후 처음으로 국채를 순매수하는 분기가 된 것이다. 12월 FOMC 이후 MBS 상환액 월 약 150억 달러를 T-Bill로 재투자하기 시작했고, 준비금 관리 매입(RMP)도 병행 중이다. 중반 이후까지 월 400억 달러, 이후 200억 달러 페이스로 RMP를 이어가면 2026년 중 Fed의 T-Bill 순매수 규모는 약 4,900억 달러에 이를 전망이다. 이는 단기물 수급에 강력한 완충 역할을 할 것으로 보인다.</p>
+
+    <p>반면 보험사는 4Q25에 190억 달러를 순매도했다. 연기금 수요도 완만하게 유지됐다. 주요 DB(확정급여형) 연기금이 흑자 전환한 상황에서 채권 자산 배분 비중이 이미 높아진 만큼, 장기 국채에 대한 추가 매수 유인이 줄어들고 있다. 스트리핑 수요도 2월에 2025년 6월 이후 최저 수준으로 감소하는 것이 이를 뒷받침한다.</p>
+  </section>
+
+  <!-- ══ SECTION 5: 해외 수요 & TIC ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">05</span> 해외 수요 분석 (TIC 데이터)</h2>
+
+    <div class="callout gold">
+      <strong>역사적 레벨:</strong> 2026년 1월 해외 공식기관의 장기 국채 순매수는 510억 달러로, 2013년 이후 역대 2위에 해당하는 기록적인 수치다.
+    </div>
+
+    <p>4Q25 기준 외국인 순매수는 280억 달러로, 2019년 4Q 이후 가장 부진한 분기 흡수였다. 하지만 보다 최신 데이터인 1월 TIC에서는 상황이 극적으로 반전됐다. 장기 국채 500억 달러 순매수 가운데 공식기관이 무려 510억 달러를 흡수한 것이다. 민간(非공식) 부문은 오히려 순매도를 기록해, 전체 순매수를 공식기관이 초과 견인한 셈이다. 공식기관은 단기물(T-Bill)도 190억 달러 추가 매수해 외국 공식 보유 중 T-Bill 비중이 0.3%포인트 상승해 10.3%에 달했다. 이는 외국 공식기관이 전반적으로 듀레이션을 축소하는 방향으로 포트폴리오를 재편하고 있다는 트렌드와 일치한다.</p>
+
+    <!-- Foreign buyers chart -->
+    <div class="chart-container">
+      <div class="chart-title">국가별 장기 국채 순매수/매도 — 2026년 1월 ($bn)</div>
+      <svg viewBox="0 0 780 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <!-- Background grid -->
+        <line x1="260" y1="10" x2="740" y2="10" stroke="#1f2940" stroke-width="1"/>
+        <line x1="260" y1="50" x2="740" y2="50" stroke="#1f2940" stroke-width="1"/>
+        <line x1="260" y1="90" x2="740" y2="90" stroke="#1f2940" stroke-width="1"/>
+        <line x1="260" y1="130" x2="740" y2="130" stroke="#1f2940" stroke-width="1"/>
+        <line x1="260" y1="170" x2="740" y2="170" stroke="#1f2940" stroke-width="1"/>
+        <line x1="260" y1="210" x2="740" y2="210" stroke="#1f2940" stroke-width="1"/>
+        <line x1="260" y1="250" x2="740" y2="250" stroke="#1f2940" stroke-width="1"/>
+        <!-- scale: 0 = x=260, each $10bn = 6px -->
+        <!-- zero axis -->
+        <line x1="260" y1="10" x2="260" y2="265" stroke="#3d4d6b" stroke-width="1.5"/>
+        <!-- labels -->
+        <text x="255" y="30"  text-anchor="end" fill="#c8d4e8" font-size="10.5">영국</text>
+        <text x="255" y="70"  text-anchor="end" fill="#c8d4e8" font-size="10.5">일본</text>
+        <text x="255" y="110" text-anchor="end" fill="#c8d4e8" font-size="10.5">이스라엘</text>
+        <text x="255" y="150" text-anchor="end" fill="#c8d4e8" font-size="10.5">유로존</text>
+        <text x="255" y="190" text-anchor="end" fill="#c8d4e8" font-size="10.5">중국</text>
+        <text x="255" y="230" text-anchor="end" fill="#c8d4e8" font-size="10.5">캐나다</text>
+        <text x="255" y="262" text-anchor="end" fill="#c8d4e8" font-size="10.5">케이먼</text>
+
+        <!-- UK: +60.8 → 60.8*6=364.8 -->
+        <rect x="260" y="13" width="364" height="28" fill="#4a90d9" opacity="0.9" rx="3"/>
+        <text x="632" y="31" fill="#e8edf5" font-size="11" font-weight="600">+60.8</text>
+        <!-- Japan: +23.1 → 138.6 -->
+        <rect x="260" y="53" width="138" height="28" fill="#4a90d9" opacity="0.75" rx="3"/>
+        <text x="406" y="71" fill="#e8edf5" font-size="11" font-weight="600">+23.1</text>
+        <!-- Israel: +14.8 → 88.8 -->
+        <rect x="260" y="93" width="88" height="28" fill="#4a90d9" opacity="0.65" rx="3"/>
+        <text x="356" y="111" fill="#e8edf5" font-size="11" font-weight="600">+14.8</text>
+        <!-- Euro: +13.1 → 78.6 -->
+        <rect x="260" y="133" width="78" height="28" fill="#4a90d9" opacity="0.60" rx="3"/>
+        <text x="346" y="151" fill="#e8edf5" font-size="11" font-weight="600">+13.1</text>
+        <!-- China: +11.9 → 71.4 -->
+        <rect x="260" y="173" width="71" height="28" fill="#4a90d9" opacity="0.55" rx="3"/>
+        <text x="339" y="191" fill="#e8edf5" font-size="11" font-weight="600">+11.9</text>
+        <!-- Canada: -76.7 → 460.2 (left) -->
+        <rect x="0" y="213" width="260" height="28" fill="#e05555" opacity="0.85" rx="3"/>
+        <text x="4" y="231" fill="#e8edf5" font-size="11" font-weight="600">-76.7 (사상 최대 매도)</text>
+        <!-- Cayman: -13.9 -->
+        <rect x="177" y="247" width="83" height="20" fill="#e05555" opacity="0.65" rx="3"/>
+        <text x="179" y="261" fill="#e8edf5" font-size="11">-13.9</text>
+
+        <!-- x-axis labels -->
+        <text x="260" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">0</text>
+        <text x="320" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">+10</text>
+        <text x="380" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">+20</text>
+        <text x="440" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">+30</text>
+        <text x="500" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">+40</text>
+        <text x="560" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">+50</text>
+        <text x="620" y="278" text-anchor="middle" fill="#6b7a99" font-size="9">+60</text>
+      </svg>
+      <p style="font-size:11px;color:var(--text-dim);margin-top:8px;">출처: Treasury International Capital (TIC) System. 단위: $bn.</p>
+    </div>
+
+    <p>지리적으로 영국이 608억 달러로 압도적 1위를 기록했다. 다만 영국 데이터에는 <strong>거래 바이어스(transactional bias)</strong>가 존재한다. 런던을 통해 거래하는 다른 국가의 해외 계정이 대거 포함되기 때문이다. 실질적으로는 영국 자체 수요보다 글로벌 기관들의 런던 창구 경유 매수라고 해석하는 것이 적절하다.</p>
+
+    <p>일본은 231억 달러를 순매수했는데, 일본 재무성(MoF) 데이터에 따르면 투자신탁이 주도하고 신탁은행은 매도를 기록했다. 이 트렌드는 2월에도 이어진 것으로 보인다. 유로존 매수는 룩셈부르크·폴란드·네덜란드에 집중됐다. 반면 캐나다는 770억 달러를 순매도해 사상 최대 단월 매도를 기록했다. 캐나다 흐름은 변동성이 매우 크다는 점(2025년 전체로는 순매수 상위권)을 감안해야 하지만, 단기적 충격으로는 가장 큰 역풍이었다.</p>
+  </section>
+
+  <!-- ══ SECTION 6: 기술적 분석 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">06</span> 기술적 분석: 2년물·30년물 핵심 레벨</h2>
+
+    <div class="two-col">
+      <div class="chart-container">
+        <div class="chart-title">2년물 수익률 핵심 레벨</div>
+        <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- Background -->
+          <!-- y-axis: 3.40% = bottom(260), 4.20% = top(20), range=0.80%=240px => 1bp=0.3px -->
+          <!-- x helper: val in %  => y = 260 - (val-3.40)/0.80*240 -->
+
+          <!-- Zone: 5.015% support -->
+          <!-- horizontal bands -->
+          <!-- resistance zone 3.60-3.65 -->
+          <rect x="40" y="135" width="310" height="18" fill="rgba(200,168,75,0.12)" rx="2"/>
+          <text x="44" y="147" fill="#c8a84b" font-size="9.5">저항대 3.60–3.65% (구 범위 고점)</text>
+
+          <!-- measured move target 3.90 -->
+          <line x1="40" y1="45" x2="350" y2="45" stroke="#e05555" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="44" y="40" fill="#e05555" font-size="9.5">3.90% — 9월-3월 패턴 목표치 (장중 돌파 후 하회)</text>
+
+          <!-- next support 4.02 -->
+          <line x1="40" y1="9" x2="350" y2="9" stroke="#e05555" stroke-width="0.8" stroke-dasharray="2,3"/>
+          <text x="44" y="6" fill="#e05555" font-size="8.5">4.02% — 다음 지지선 (61.8% 피보나치)</text>
+
+          <!-- current close 3.83 -->
+          <line x1="40" y1="99" x2="350" y2="99" stroke="#4a90d9" stroke-width="2"/>
+          <circle cx="340" cy="99" r="4" fill="#4a90d9"/>
+          <text x="44" y="94" fill="#4a90d9" font-size="10" font-weight="600">◆ 종가 3.83%</text>
+
+          <!-- intraday high 3.90+ area shaded -->
+          <rect x="40" y="39" width="310" height="60" fill="rgba(224,85,85,0.06)" rx="2"/>
+
+          <!-- moving avg support 3.40 area -->
+          <line x1="40" y1="255" x2="350" y2="255" stroke="#3dba8a" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="44" y="251" fill="#3dba8a" font-size="9">3.40% — 장기 지지 구간</text>
+
+          <!-- simple candle representation (intraday) -->
+          <rect x="290" y="45" width="10" height="54" fill="rgba(224,85,85,0.4)" rx="1"/>
+          <line x1="295" y1="39" x2="295" y2="99" stroke="#e05555" stroke-width="1.5"/>
+          <text x="305" y="72" fill="#e05555" font-size="9">18bp range</text>
+
+          <!-- y-axis labels -->
+          <text x="35" y="265" text-anchor="end" fill="#6b7a99" font-size="9">3.40%</text>
+          <text x="35" y="175" text-anchor="end" fill="#6b7a99" font-size="9">3.60%</text>
+          <text x="35" y="105" text-anchor="end" fill="#6b7a99" font-size="9">3.80%</text>
+          <text x="35" y="45"  text-anchor="end" fill="#6b7a99" font-size="9">3.90%</text>
+
+          <line x1="40" y1="20" x2="40" y2="270" stroke="#3d4d6b" stroke-width="1"/>
+          <line x1="40" y1="270" x2="355" y2="270" stroke="#3d4d6b" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">30년물 수익률 핵심 레벨</div>
+        <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- y: 4.55%(bottom=260) ~ 5.20%(top=20), range=0.65%=240px => 1bp=0.369px -->
+          <!-- 4.80% cluster of MAs -->
+          <rect x="40" y="92" width="310" height="20" fill="rgba(200,168,75,0.12)" rx="2"/>
+          <text x="44" y="107" fill="#c8a84b" font-size="9.5">4.80% — 이평선 군집 (이하 시 베어 모멘텀 유지)</text>
+
+          <!-- 5.00% major support -->
+          <line x1="40" y1="34" x2="350" y2="34" stroke="#3dba8a" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="44" y="29" fill="#3dba8a" font-size="9.5">5.00% — 주요 장기 지지대 하단</text>
+
+          <!-- 5.015-5.075 cluster -->
+          <rect x="40" y="20" width="310" height="20" fill="rgba(61,186,138,0.1)" rx="2"/>
+          <text x="44" y="37" fill="#3dba8a" font-size="8.5" opacity="0.8">5.015–5.075%</text>
+
+          <!-- 4.895 May trend line -->
+          <line x1="40" y1="57" x2="350" y2="57" stroke="#4a90d9" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <text x="44" y="52" fill="#4a90d9" font-size="9">4.895% — 5월 추세선 지지</text>
+
+          <!-- 4.945 Jan high -->
+          <line x1="40" y1="39" x2="350" y2="39" stroke="#4a90d9" stroke-width="0.8" stroke-dasharray="2,3"/>
+
+          <!-- resistance 4.60-4.63 -->
+          <rect x="40" y="218" width="310" height="18" fill="rgba(74,144,217,0.10)" rx="2"/>
+          <text x="44" y="231" fill="#4a90d9" font-size="9.5">4.60–4.63% — 저항대 (2-3월 랠리 억제)</text>
+
+          <!-- current close 4.85 -->
+          <line x1="40" y1="65" x2="350" y2="65" stroke="#c8a84b" stroke-width="2"/>
+          <circle cx="340" cy="65" r="4" fill="#c8a84b"/>
+          <text x="44" y="61" fill="#c8a84b" font-size="10" font-weight="600">◆ 종가 4.85%</text>
+
+          <!-- y-axis labels -->
+          <text x="35" y="265" text-anchor="end" fill="#6b7a99" font-size="9">4.55%</text>
+          <text x="35" y="170" text-anchor="end" fill="#6b7a99" font-size="9">4.70%</text>
+          <text x="35" y="100" text-anchor="end" fill="#6b7a99" font-size="9">4.80%</text>
+          <text x="35" y="65"  text-anchor="end" fill="#6b7a99" font-size="9">4.85%</text>
+          <text x="35" y="35"  text-anchor="end" fill="#6b7a99" font-size="9">5.00%</text>
+
+          <line x1="40" y1="20" x2="40" y2="270" stroke="#3d4d6b" stroke-width="1"/>
+          <line x1="40" y1="270" x2="355" y2="270" stroke="#3d4d6b" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+
+    <p>2년물은 9월~3월 패턴 목표치(3.90%)를 장중 돌파했지만, 종가는 3.83%로 되돌아왔다. 기술적으로 다음 저항선은 4.02%(2025년 1월 고점의 61.8% 피보나치 되돌림)와 4.11%(2024~25년 차트 변곡점)다. J.P. Morgan은 현 레벨에서 금리 상승을 반대매매(fade)하기엔 확신이 낮다고 밝혔다. 주식 시장이 추가 급락하며 안전자산 수요(flight-to-quality)가 발생하면 채권 금리 하락 재료가 생길 수 있지만, 그 연동이 아직 작동하지 않는 상태다. 금리가 하락 반전하더라도 <strong>3.60~3.65%는 강력한 저항선</strong>으로 기능할 가능성이 높다고 봤다.</p>
+
+    <p>30년물은 상대적으로 견조했다. 4.895% 5월 추세선과 4.945% 1월 고점 근처에서 매수세가 유입되며 단기 지지를 받고 있다. 그러나 4.80% 이평선 군집 아래에 있는 한 단기 약세 모멘텀은 유효하다. 장기적으로 <strong>5.00% 아래의 지지대(5.015~5.075%와 5.15~5.18%)</strong>가 이 채권의 하방 한계선으로 주목받고 있다. 상방에서는 4.60~4.63%의 저항대가 2~3월 랠리를 막아섰던 레벨로 남아 있다.</p>
+  </section>
+
+  <!-- ══ SECTION 7: 포지셔닝 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">07</span> 시장 포지셔닝 지표</h2>
+
+    <p>포지셔닝 지표들은 현재 극단적으로 분화되어 있다. 투기적 순숏(CFTC 비상업 포지션)은 1년 기준으로 역대급 극단 숏 영역에 있는 반면, 자산운용사(뮤추얼펀드·헤지펀드) 포지션은 오히려 방어적이거나 숏이다. 이 괴리가 시사하는 바는 복잡하다.</p>
+
+    <div class="pos-grid">
+      <!-- TCS: -0.57 (약간 숏 → 중립) -->
+      <div class="pos-card">
+        <div class="pos-label">국채 클라이언트 서베이 (TCS)</div>
+        <div class="z-bar-track">
+          <div class="z-bar-fill" style="width:37%;left:50%;background:var(--red);"></div>
+        </div>
+        <div class="z-score" style="color:var(--yellow);">-0.57</div>
+        <div class="z-desc">1년 Z-score. 약간 숏 편향 — 중립에 가까움</div>
+      </div>
+      <!-- CFTC: 2.02 (극단 숏) -->
+      <div class="pos-card">
+        <div class="pos-label">CFTC 비상업 (투기적 숏)</div>
+        <div class="z-bar-track">
+          <div class="z-bar-fill" style="width:90%;left:50%;background:var(--red);"></div>
+        </div>
+        <div class="z-score" style="color:var(--red);">+2.02</div>
+        <div class="z-desc">극단적 투기 숏 (선물 기준 TY 등가 환산)</div>
+      </div>
+      <!-- CTA: -0.83 -->
+      <div class="pos-card">
+        <div class="pos-label">CTA 10년물 노출도</div>
+        <div class="z-bar-track">
+          <div class="z-bar-fill" style="width:35%;right:50%;background:var(--green);"></div>
+        </div>
+        <div class="z-score" style="color:var(--green);">-0.83</div>
+        <div class="z-desc">1년 Z-score. CTA는 10년물 롱 편향 부재</div>
+      </div>
+      <!-- ActiveBond: -0.80 -->
+      <div class="pos-card">
+        <div class="pos-label">액티브 코어본드펀드</div>
+        <div class="z-bar-track">
+          <div class="z-bar-fill" style="width:33%;right:50%;background:var(--green);"></div>
+        </div>
+        <div class="z-score" style="color:var(--green);">-0.80</div>
+        <div class="z-desc">10년물 금리 노출도 방어적 (언더웨이트 성향)</div>
+      </div>
+      <!-- Macro HF: -1.67 -->
+      <div class="pos-card">
+        <div class="pos-label">매크로 헤지펀드</div>
+        <div class="z-bar-track">
+          <div class="z-bar-fill" style="width:67%;right:50%;background:var(--green);"></div>
+        </div>
+        <div class="z-score" style="color:var(--green);">-1.67</div>
+        <div class="z-desc">1년 Z-score 1.67 시그마 숏 → 매우 방어적</div>
+      </div>
+      <!-- Put/Call: +1.51 -->
+      <div class="pos-card">
+        <div class="pos-label">T-Note 풋/콜 비율</div>
+        <div class="z-bar-track">
+          <div class="z-bar-fill" style="width:60%;left:50%;background:var(--red);"></div>
+        </div>
+        <div class="z-score" style="color:var(--red);">+1.51</div>
+        <div class="z-desc">풋 상대 고평가 — 하방 헤지 수요 증가 반영</div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;">가장 주목할 지표는 <strong>CFTC 투기 포지션(z-score +2.02)</strong>이다. SOFR 및 국채 선물의 투기적 넷숏이 1년 z-score 기준 2표준편차 이상의 극단적 숏 포지션에 달해 있다. 반면 매크로 헤지펀드(-1.67 σ), CTA(-0.83 σ), 액티브 채권 펀드(-0.80 σ)는 모두 채권에 대해 방어적이다. T-Note 풋/콜 비율도 +1.51 σ로 높아 하방 헤지 수요가 크다. 이 구도에서 만약 경기 둔화나 지정학 리스크 완화가 단기물 금리를 끌어내리는 커버링 랠리가 발생한다면, CFTC 포지션 청산이 되레 금리 하락을 가속할 수 있다는 점이 테일 리스크다.</p>
+  </section>
+
+  <!-- ══ SECTION 8: 전략적 시사점 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">08</span> 전략적 시사점</h2>
+
+    <div class="strategy-box">
+      <h4>① 커브 플래트너 유지 가능성</h4>
+      <p>2s/10s 스프레드가 45bp까지 압축된 상황에서, 단기물이 3m 최고 백분위에 위치한 반면 장기물은 76% 수준에 머물러 있다. BoE·ECB의 추가 인상 기대가 미국 2년물에도 추가 상승 압력으로 전달될 수 있다. 단, 커브가 이미 극도로 플래트하다는 점에서 위험-보상 비율은 악화 중이다.</p>
+    </div>
+
+    <div class="strategy-box">
+      <h4>② 30년물의 상대 아웃퍼폼 구도</h4>
+      <p>30년물이 오늘 하루 -2.8bp로 단기물 대비 크게 아웃퍼폼했다. 기술적으로 4.895% 지지가 유효한 가운데, LDI 수요 둔화와 딜러 재고 증가가 중기적 역풍이다. 다만 SOMA의 MBS 재투자가 장기물보다 T-Bill에 집중된다는 점은 장기물 수급에 상대적으로 덜 부담이다.</p>
+    </div>
+
+    <div class="strategy-box">
+      <h4>③ 해외 공식기관 수요의 구조적 의미</h4>
+      <p>510억 달러라는 기록적인 외국 공식기관 매수는 단순 수요 증가를 넘어, 기축통화로서 달러와 미 국채의 안전자산 지위가 건재함을 재확인한다. "달러 사망설"에 반박하는 가장 직접적인 데이터다. 단, 외국 공식기관이 단기물 비중을 높이는 방향으로 재편 중이라는 점(T-Bill 비중 10.3%)은 장기물 민간 수요의 구조적 공백을 보완하기 어렵다는 점을 함께 시사한다.</p>
+    </div>
+
+    <div class="strategy-box">
+      <h4>④ 지정학 vs. 인플레이션 프레임의 교차</h4>
+      <p>중동 분쟁 종결 기대가 유가를 끌어내리면 BoE·ECB의 추가 인상 논거가 약화되고, 동시에 연준의 정책 여력도 약간 회복된다. 반대로 분쟁이 지속되면 에너지 가격 상승이 인플레이션을 재점화한다. 이 두 경로의 확률 가중치에 따라 커브 기울기와 TIPS 브레이크이븐의 방향이 달라진다. 5Y BEI가 271bp(3m 99 백분위)로 이미 고평가 수준에 있다는 점은 지정학 완화 시나리오에서 TIPS 매도 기회가 될 수 있다.</p>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 9: 실무 포인트 ══ -->
+  <section class="section">
+    <h2 class="section-heading"><span class="section-num">09</span> 실무 포인트</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left">항목</th>
+            <th style="text-align:left">현황</th>
+            <th style="text-align:left">주요 레벨 / 모니터링 포인트</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2년물 단기 방향</td>
+            <td>3.83% (3m 100 백분위)</td>
+            <td>상방: 4.02% (피보나치) / 하방 저항: 3.60–3.65%</td>
+          </tr>
+          <tr>
+            <td>30년물 핵심 지지</td>
+            <td>4.85% (4.895% 추세선 근접)</td>
+            <td>지지: 4.895%·4.945% / 저항: 4.80% 이평선·4.63%</td>
+          </tr>
+          <tr>
+            <td>커브 스프레드</td>
+            <td>2s/10s 45bp (3m 0 백분위)</td>
+            <td>스팁 전환 트리거: 주식 급락·연준 완화 시그널</td>
+          </tr>
+          <tr>
+            <td>5Y BEI</td>
+            <td>271bp (3m 99 백분위)</td>
+            <td>지정학 완화 시 TIPS 매도·노미널 매수 기회</td>
+          </tr>
+          <tr>
+            <td>Fed SOMA T-Bill 매입</td>
+            <td>3/11 기준 $315bn, RMP 月$40bn</td>
+            <td>4월 중순까지 월 $40bn → 이후 월 $20bn으로 축소</td>
+          </tr>
+          <tr>
+            <td>MMF 수요 전망</td>
+            <td>4Q25 $229bn (연율 $392bn)</td>
+            <td>2026년 $375bn 예상 (WAM 연장·Fed 동결 영향)</td>
+          </tr>
+          <tr>
+            <td>BoE / ECB 다음 이벤트</td>
+            <td>각 4월 25bp 인상 예상</td>
+            <td>에너지 가격·중동 동향이 결정적 변수</td>
+          </tr>
+          <tr>
+            <td>CFTC 투기 포지션</td>
+            <td>Z-score +2.02 (극단 숏)</td>
+            <td>금리 반전 시 커버링 스퀴즈 위험 — 포지션 관리 필요</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="report-footer">
+    <p>본 리포트는 J.P. Morgan Global Markets Strategy — US Treasury Market Daily (2026년 3월 19일, Jay Barry·Jason Hunter 등 저) 원문을 바탕으로 한국어 설명형으로 재구성·분석한 자료입니다. 투자 권유 목적이 아니며, 모든 수치·전망은 원문 발행 시점 기준입니다. 투자 결정 시 원문 및 공시자료를 반드시 확인하시기 바랍니다.</p>
+    <p style="margin-top:8px;color:var(--text-muted);">Source: J.P. Morgan, Bloomberg Finance L.P., Federal Reserve Z.1, Treasury International Capital System (TIC), CFTC, Federal Reserve Bank of New York. © 2026 JPMorgan Chase & Co.</p>
+  </footer>
+
+</div>
+</body>
+</html>
